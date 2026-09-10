@@ -1,0 +1,1415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>少妇.cn · 美妆资讯 — 发现更美的自己</title>
+<meta name="description" content="少妇.cn美妆资讯，专注护肤、彩妆、发型、香氛的实用指南，让每一位女性发现更美的自己。">
+<link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap">
+<style>
+/* ===== 全局重置与变量 ===== */
+:root{
+  --rose:#c97b8a; --rose-deep:#a85c6e; --rose-light:#f5e6ea;
+  --cream:#fdf8f5; --card:#ffffff; --ink:#3d2c33; --ink-soft:#7a6a70;
+  --line:#f0e4e0; --gold:#c9a96e; --shadow:0 4px 24px rgba(168,92,110,.08);
+  --radius:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans SC',-apple-system,sans-serif;background:var(--cream);color:var(--ink);line-height:1.7;font-size:15px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{cursor:pointer;font-family:inherit;border:none;background:none}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* ===== 顶部导航 ===== */
+.nav{position:sticky;top:0;z-index:100;background:rgba(253,248,245,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:'Noto Serif SC',serif;font-size:24px;font-weight:900;color:var(--rose-deep);letter-spacing:1px}
+.logo span{color:var(--gold);font-size:14px;font-weight:400;margin-left:6px;letter-spacing:2px}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);transition:color .2s;padding:4px 0;border-bottom:2px solid transparent}
+.nav-links a:hover,.nav-links a.active{color:var(--rose-deep);border-bottom-color:var(--rose)}
+.nav-search{display:flex;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:6px 16px;gap:8px;width:220px}
+.nav-search input{border:none;outline:none;font-size:13.5px;background:transparent;flex:1;color:var(--ink)}
+.nav-search svg{width:16px;height:16px;stroke:var(--ink-soft);flex-shrink:0}
+.menu-toggle{display:none;flex-direction:column;gap:5px;padding:8px}
+.menu-toggle span{width:22px;height:2px;background:var(--ink);border-radius:2px}
+
+/* ===== Hero 轮播 ===== */
+.hero{position:relative;height:440px;overflow:hidden;border-radius:0 0 32px 32px}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity .8s ease}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(61,44,51,.55) 0%,rgba(168,92,110,.25) 50%,transparent 100%)}
+.hero-content{position:absolute;bottom:60px;left:60px;z-index:2;max-width:520px;color:#fff}
+.hero-tag{display:inline-block;background:rgba(255,255,255,.2);backdrop-filter:blur(8px);padding:4px 14px;border-radius:20px;font-size:12.5px;letter-spacing:1px;margin-bottom:16px}
+.hero-title{font-family:'Noto Serif SC',serif;font-size:34px;font-weight:700;line-height:1.35;margin-bottom:12px;text-shadow:0 2px 12px rgba(0,0,0,.3)}
+.hero-desc{font-size:14.5px;opacity:.9;line-height:1.7;margin-bottom:20px}
+.hero-btn{display:inline-block;background:#fff;color:var(--rose-deep);padding:10px 28px;border-radius:24px;font-size:14px;font-weight:600;transition:transform .2s,box-shadow .2s}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.hero-dots{position:absolute;bottom:28px;right:48px;z-index:3;display:flex;gap:10px}
+.hero-dots button{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.4);transition:all .3s}
+.hero-dots button.active{background:#fff;width:28px;border-radius:5px}
+
+/* ===== 分类标签栏 ===== */
+.cat-bar{padding:28px 0 8px}
+.cat-list{display:flex;gap:10px;flex-wrap:wrap;list-style:none}
+.cat-list button{padding:8px 20px;border-radius:20px;font-size:13.5px;font-weight:500;background:var(--card);color:var(--ink-soft);border:1px solid var(--line);transition:all .2s}
+.cat-list button:hover{border-color:var(--rose);color:var(--rose-deep)}
+.cat-list button.active{background:var(--rose);color:#fff;border-color:var(--rose)}
+
+/* ===== 主内容区 ===== */
+.main{display:grid;grid-template-columns:1fr 320px;gap:36px;padding:28px 0 60px}
+.section-title{font-family:'Noto Serif SC',serif;font-size:22px;font-weight:700;color:var(--ink);margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.section-title::before{content:'';width:4px;height:22px;background:var(--rose);border-radius:2px}
+
+/* 热门精选 */
+.featured{display:grid;grid-template-columns:1.2fr 1fr;gap:20px;margin-bottom:40px}
+.featured-main{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;height:340px}
+.featured-main img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.featured-main:hover img{transform:scale(1.05)}
+.featured-main .overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(61,44,51,.85) 0%,transparent 60%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+.featured-main .cat-badge{display:inline-block;background:var(--rose);color:#fff;padding:3px 12px;border-radius:12px;font-size:12px;margin-bottom:10px;align-self:flex-start}
+.featured-main h3{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:#fff;line-height:1.4;margin-bottom:8px}
+.featured-main p{font-size:13px;color:rgba(255,255,255,.8);line-height:1.6}
+.featured-side{display:flex;flex-direction:column;gap:14px}
+.featured-item{display:flex;gap:14px;background:var(--card);border-radius:var(--radius);padding:14px;cursor:pointer;transition:box-shadow .2s,transform .2s;flex:1}
+.featured-item:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.featured-item img{width:110px;height:90px;object-fit:cover;border-radius:10px;flex-shrink:0}
+.featured-item-info{display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.featured-item-info h4{font-size:14.5px;font-weight:600;line-height:1.45;color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.featured-item-meta{font-size:12px;color:var(--ink-soft);display:flex;gap:10px}
+
+/* 文章卡片网格 */
+.article-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.article-card{background:var(--card);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:box-shadow .25s,transform .25s}
+.article-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.article-card-img{height:180px;overflow:hidden;position:relative}
+.article-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.article-card:hover .article-card-img img{transform:scale(1.06)}
+.article-card-body{padding:18px}
+.article-card-cat{display:inline-block;font-size:11.5px;color:var(--rose-deep);background:var(--rose-light);padding:2px 10px;border-radius:10px;margin-bottom:10px;font-weight:500}
+.article-card h3{font-family:'Noto Serif SC',serif;font-size:16.5px;font-weight:700;line-height:1.45;margin-bottom:8px;color:var(--ink)}
+.article-card p{font-size:13.5px;color:var(--ink-soft);line-height:1.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-bottom:12px}
+.article-card-meta{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--ink-soft)}
+.article-card-meta .author{display:flex;align-items:center;gap:6px}
+.avatar{width:22px;height:22px;border-radius:50%;background:var(--rose-light);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--rose-deep);font-weight:600}
+
+/* ===== 侧边栏 ===== */
+.sidebar{display:flex;flex-direction:column;gap:28px}
+.widget{background:var(--card);border-radius:var(--radius);padding:22px}
+.widget-title{font-family:'Noto Serif SC',serif;font-size:17px;font-weight:700;margin-bottom:16px;color:var(--ink);padding-bottom:12px;border-bottom:2px solid var(--rose-light)}
+.hot-list{list-style:none;counter-reset:hot}
+.hot-list li{counter-increment:hot;padding:12px 0;border-bottom:1px dashed var(--line);cursor:pointer;display:flex;gap:12px;align-items:flex-start}
+.hot-list li:last-child{border-bottom:none}
+.hot-list li::before{content:counter(hot);font-family:'Noto Serif SC',serif;font-size:18px;font-weight:900;color:var(--rose);min-width:24px;line-height:1.3}
+.hot-list li:nth-child(n+4)::before{color:var(--ink-soft);opacity:.5}
+.hot-list h4{font-size:13.5px;font-weight:500;line-height:1.5;color:var(--ink);transition:color .2s}
+.hot-list li:hover h4{color:var(--rose-deep)}
+.hot-list .views{font-size:11.5px;color:var(--ink-soft);margin-top:4px}
+
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+.tag-cloud a{padding:5px 14px;background:var(--cream);border-radius:16px;font-size:12.5px;color:var(--ink-soft);transition:all .2s;border:1px solid transparent}
+.tag-cloud a:hover{background:var(--rose-light);color:var(--rose-deep);border-color:var(--rose)}
+
+.about-widget{text-align:center}
+.about-widget .logo{font-size:28px;margin-bottom:8px}
+.about-widget p{font-size:13px;color:var(--ink-soft);line-height:1.7;margin-bottom:14px}
+.about-stats{display:flex;justify-content:space-around;padding-top:14px;border-top:1px solid var(--line)}
+.about-stats div{text-align:center}
+.about-stats .num{font-family:'Noto Serif SC',serif;font-size:20px;font-weight:700;color:var(--rose-deep)}
+.about-stats .label{font-size:11.5px;color:var(--ink-soft);margin-top:2px}
+
+/* ===== 文章详情页 ===== */
+.article-detail{background:var(--card);border-radius:var(--radius);padding:40px 48px;margin-bottom:32px}
+.article-detail .back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13.5px;color:var(--ink-soft);margin-bottom:24px;transition:color .2s}
+.article-detail .back-btn:hover{color:var(--rose-deep)}
+.article-detail h1{font-family:'Noto Serif SC',serif;font-size:30px;font-weight:700;line-height:1.4;color:var(--ink);margin-bottom:16px}
+.article-meta{display:flex;align-items:center;gap:16px;font-size:13px;color:var(--ink-soft);padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:28px;flex-wrap:wrap}
+.article-meta .author-info{display:flex;align-items:center;gap:8px}
+.article-cover{width:100%;height:380px;object-fit:cover;border-radius:var(--radius);margin-bottom:32px}
+.article-body{font-size:15.5px;line-height:1.9;color:#4a3a40}
+.article-body h2{font-family:'Noto Serif SC',serif;font-size:21px;font-weight:700;color:var(--ink);margin:32px 0 14px;padding-left:12px;border-left:4px solid var(--rose)}
+.article-body h3{font-size:17px;font-weight:600;color:var(--ink);margin:24px 0 10px}
+.article-body p{margin-bottom:16px}
+.article-body ul,.article-body ol{margin:0 0 16px 24px}
+.article-body li{margin-bottom:8px}
+.article-body blockquote{border-left:3px solid var(--rose);background:var(--rose-light);padding:14px 20px;border-radius:0 8px 8px 0;margin:20px 0;font-size:14.5px;color:var(--ink-soft);font-style:italic}
+.article-body strong{color:var(--rose-deep);font-weight:600}
+.article-tags{display:flex;gap:8px;margin-top:32px;padding-top:20px;border-top:1px solid var(--line);flex-wrap:wrap}
+.article-tags a{padding:4px 14px;background:var(--cream);border-radius:14px;font-size:12.5px;color:var(--ink-soft)}
+
+/* 相关文章 */
+.related-section{margin-top:36px}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.related-card{background:var(--card);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:box-shadow .2s}
+.related-card:hover{box-shadow:var(--shadow)}
+.related-card img{height:120px;object-fit:cover;width:100%}
+.related-card-body{padding:14px}
+.related-card h4{font-size:14px;font-weight:600;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ===== 分类页 ===== */
+.cat-header{text-align:center;padding:48px 0 32px}
+.cat-header h1{font-family:'Noto Serif SC',serif;font-size:32px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.cat-header p{font-size:14.5px;color:var(--ink-soft)}
+
+/* ===== 页脚 ===== */
+.footer{background:var(--ink);color:rgba(255,255,255,.7);padding:48px 0 28px;margin-top:40px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:36px;margin-bottom:32px}
+.footer-brand .logo{color:#fff;font-size:22px;margin-bottom:12px}
+.footer-brand p{font-size:13px;line-height:1.7;opacity:.7}
+.footer h4{color:#fff;font-size:14.5px;font-weight:600;margin-bottom:14px}
+.footer ul{list-style:none}
+.footer li{margin-bottom:8px}
+.footer a{font-size:13px;opacity:.7;transition:opacity .2s}
+.footer a:hover{opacity:1;color:var(--rose-light)}
+.footer-bottom{text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;opacity:.5}
+
+/* ===== 搜索结果 / 空状态 ===== */
+.empty-state{text-align:center;padding:80px 20px;color:var(--ink-soft)}
+.empty-state svg{width:64px;height:64px;stroke:var(--rose-light);margin-bottom:16px}
+.empty-state h3{font-size:18px;color:var(--ink);margin-bottom:8px}
+
+/* ===== 响应式 ===== */
+@media(max-width:960px){
+  .main{grid-template-columns:1fr}
+  .sidebar{order:2}
+  .featured{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:var(--card);flex-direction:column;padding:20px 24px;gap:16px;box-shadow:var(--shadow);border-radius:0 0 16px 16px}
+  .nav-links.open{display:flex}
+  .menu-toggle{display:flex}
+  .nav-search{width:160px}
+  .hero{height:340px}
+  .hero-content{left:28px;bottom:48px;max-width:80%}
+  .hero-title{font-size:24px}
+  .article-detail{padding:28px 20px}
+  .article-detail h1{font-size:22px}
+  .article-cover{height:240px}
+}
+@media(max-width:560px){
+  .article-grid{grid-template-columns:1fr}
+  .related-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-dots{right:20px}
+  .nav-search{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== 导航 ===== -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#/" class="logo">少妇.cn<span>BEAUTY</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#/" class="active" data-nav="home">首页</a></li>
+      <li><a href="#/category/护肤" data-nav="护肤">护肤</a></li>
+      <li><a href="#/category/彩妆" data-nav="彩妆">彩妆</a></li>
+      <li><a href="#/category/发型护发" data-nav="发型护发">发型护发</a></li>
+      <li><a href="#/category/美体香氛" data-nav="美体香氛">美体香氛</a></li>
+      <li><a href="#/about" data-nav="about">关于我们</a></li>
+    </ul>
+    <div class="nav-search">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="搜索美妆文章…" onkeydown="if(event.key==='Enter')doSearch()">
+    </div>
+    <button class="menu-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===== 主容器 ===== -->
+<div id="app"></div>
+
+<!-- ===== 页脚 ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">少妇.cn</div>
+        <p>专注美妆资讯与实用指南，分享护肤、彩妆、发型、香氛的专业知识，帮助每一位女性发现更美的自己。</p>
+      </div>
+      <div>
+        <h4>内容分类</h4>
+        <ul>
+          <li><a href="#/category/护肤">护肤技巧</a></li>
+          <li><a href="#/category/彩妆">彩妆教程</a></li>
+          <li><a href="#/category/发型护发">发型护发</a></li>
+          <li><a href="#/category/美体香氛">美体香氛</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>热门标签</h4>
+        <ul>
+          <li><a href="#/tag/抗老">抗老精华</a></li>
+          <li><a href="#/tag/敏感肌">敏感肌</a></li>
+          <li><a href="#/tag/口红">口红推荐</a></li>
+          <li><a href="#/tag/秋冬妆容">秋冬妆容</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#/about">关于我们</a></li>
+          <li><a href="#/about">联系我们</a></li>
+          <li><a href="#/about">投稿合作</a></li>
+          <li><a href="#/about">版权声明</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 少妇.cn 美妆资讯 · 让美成为一种生活态度</div>
+  </div>
+</footer>
+
+<script>
+/* ===== 文章数据（以后更新文章只需在这里添加） ===== */
+const ARTICLES = [
+{
+  id:1, title:"2026秋冬护肤趋势：以油养肤正当时", category:"护肤", tags:["秋冬护肤","以油养肤","精华油"],
+  cover:"assets/hero-skincare.jpg", date:"2026-09-08", author:"林小美", views:12840,
+  summary:"气温骤降，皮肤开始干燥紧绷？今年秋冬最火的护肤方式就是以油养肤。选对精华油，让你的肌肤在寒风中依然水润透亮。",
+  content:`<p>每到秋冬换季，很多人的皮肤就开始闹脾气：干燥、紧绷、起皮、泛红，甚至连平时用着好好的护肤品也开始刺痛。其实，这是皮肤屏障在向你发出求救信号。2026年的秋冬护肤圈，<strong>"以油养肤"</strong>成为最受关注的护肤理念。</p>
+<h2>为什么秋冬需要"以油养肤"？</h2>
+<p>秋冬季节空气湿度低，皮肤的水分蒸发速度是夏天的2-3倍。单纯补水已经不够，因为补进去的水分很快又会流失。油脂就像皮肤的"锁水衣"，能在皮肤表面形成一层保护膜，减少水分蒸发，同时修复受损的皮肤屏障。</p>
+<p>很多人对"用油"有误解，担心油皮用油会爆痘。事实上，<strong>皮肤出油往往是因为缺水</strong>，水油不平衡才会导致油脂过度分泌。适当补充优质油脂，反而能调节皮肤的水油平衡。</p>
+<h2>如何挑选适合自己的精华油？</h2>
+<h3>干皮/敏感肌</h3>
+<p>优先选择角鲨烷、霍霍巴油、甜杏仁油等温和亲肤的油脂。角鲨烷与人体皮脂成分最接近，渗透性好，敏感肌也能安心使用。</p>
+<h3>油皮/混油皮</h3>
+<p>选择质地轻薄的水感油，如葡萄籽油、茶树精油（稀释后）。避开过于厚重的矿物油和椰子油，以免堵塞毛孔。</p>
+<h3>熟龄肌/抗老需求</h3>
+<p>关注含有视黄醇、胜肽、玻色因等抗老成分的精华油，或者玫瑰果油、阿甘油等富含不饱和脂肪酸的天然油脂，帮助淡化细纹、提升紧致度。</p>
+<h2>精华油的正确使用方法</h2>
+<ul>
+<li><strong>洁面后第一步</strong>：在化妆水之前使用，利用油脂的亲肤性打开吸收通道。</li>
+<li><strong>混合面霜</strong>：将1-2滴精华油混入日常面霜中，增强滋润度。</li>
+<li><strong>油敷法</strong>：每周1-2次，取3-5滴精华油全脸按摩，敷上热毛巾3分钟，促进吸收。</li>
+<li><strong>底妆搭档</strong>：在粉底液中加入1滴精华油，底妆更服帖，告别卡粉。</li>
+</ul>
+<blockquote>小贴士：精华油虽然好，但也不是越多越好。每次1-3滴足够，过量使用反而可能造成皮肤负担。</blockquote>
+<h2>2026秋冬护肤趋势总结</h2>
+<p>除了以油养肤，今年秋冬还有几个值得关注的趋势：<strong>屏障修护</strong>依然是核心诉求，神经酰胺、泛醇等成分持续火热；<strong>纯净美妆</strong>概念深入人心，消费者越来越关注成分表的清洁度；<strong>精准护肤</strong>成为新方向，根据皮肤状态分区护理、分时护理越来越流行。</p>
+<p>护肤没有标准答案，找到适合自己的方式才是最重要的。这个秋冬，不妨试试以油养肤，给肌肤多一层温柔的呵护。</p>`
+},
+{
+  id:2, title:"敏感肌自救指南：换季烂脸怎么办", category:"护肤", tags:["敏感肌","换季护肤","屏障修护"],
+  cover:"assets/hero-ingredients.jpg", date:"2026-09-05", author:"陈医生", views:18920,
+  summary:"一到换季就脸红、刺痛、起疹子？敏感肌的苦只有自己懂。这份科学自救指南，帮你平稳度过每一个换季期。",
+  content:`<p>"换季如换脸"——这是很多敏感肌人群的真实写照。春夏之交、秋冬换季，气温和湿度的剧烈变化让本就脆弱的皮肤屏障雪上加霜。泛红、刺痛、瘙痒、爆痘，各种问题接踵而至。今天我们就来系统聊聊，敏感肌到底该如何自救。</p>
+<h2>先搞清楚：你是真敏感还是假敏感？</h2>
+<p>很多人自称敏感肌，但其实可能只是皮肤暂时处于敏感期。真正的先天性敏感肌占比不到10%，大部分人的敏感是<strong>后天造成的</strong>——过度清洁、频繁去角质、滥用猛药、不注意防晒，这些行为都会破坏皮肤屏障，导致皮肤变得"敏感"。</p>
+<p>判断方法：如果你的皮肤在使用大多数护肤品时都感到刺痛，或者遇冷遇热就容易泛红，那很可能是屏障受损型敏感。这种敏感是可以通过科学护理改善的。</p>
+<h2>敏感肌护肤的核心原则</h2>
+<h3>1. 精简护肤，少即是多</h3>
+<p>敏感期最忌讳的就是"叠叠乐"。把你的护肤步骤精简到三步：<strong>温和洁面 + 修护保湿 + 硬防晒</strong>。精华、面膜、去角质产品全部暂停，给皮肤足够的时间自我修复。</p>
+<h3>2. 避开这些刺激成分</h3>
+<ul>
+<li>酒精（乙醇）、香精、色素</li>
+<li>高浓度酸类（水杨酸、果酸浓度超过5%）</li>
+<li>高浓度视黄醇（A醇）</li>
+<li>皂基洁面（脂肪酸+碱剂）</li>
+<li>刺激性防腐剂（MIT、CMIT等）</li>
+</ul>
+<h3>3. 优先选择这些修护成分</h3>
+<p><strong>神经酰胺</strong>：皮肤屏障的核心组成成分，补充神经酰胺能直接修复受损屏障。<strong>泛醇（维生素B5）</strong>：具有优秀的保湿和修护能力，能促进皮肤愈合。<strong>角鲨烷</strong>：与皮脂成分接近，温和亲肤，帮助锁水。<strong>积雪草苷</strong>：天然的舒缓成分，能减轻泛红和炎症反应。<strong>依克多因</strong>：极端环境微生物的保护成分，能帮助皮肤抵御外界刺激。</p>
+<h2>换季敏感期的具体护理方案</h2>
+<h3>晨间护理</h3>
+<p>温水洁面（或直接用清水）→ 修护精华（含神经酰胺/泛醇）→ 保湿面霜 → 物理防晒（氧化锌/二氧化钛）</p>
+<h3>晚间护理</h3>
+<p>温和氨基酸洁面 → 修护精华 → 滋润型面霜（可厚敷作为睡眠面膜）</p>
+<h3>每周急救</h3>
+<p>每周1次舒缓面膜（选择成分简单的贴片面膜，敷10-15分钟即可，不要超过20分钟）。敷完后一定要涂面霜锁水，否则面膜蒸发会带走更多水分。</p>
+<h2>这些误区一定要避开</h2>
+<blockquote>误区一：敏感肌要用纯天然产品。<br>正解：纯天然不等于温和，很多植物提取物反而更容易致敏。选择经过敏感肌测试、成分精简的产品更靠谱。</blockquote>
+<blockquote>误区二：频繁敷面膜能补水修护。<br>正解：过度水合会进一步破坏屏障，敏感期每周1次足够。</blockquote>
+<blockquote>误区三：敏感肌不能用防晒霜。<br>正解：紫外线会加重炎症和泛红，敏感肌更需要防晒，优先选择物理防晒或敏感肌专用的化学防晒。</blockquote>
+<h2>什么时候需要看医生？</h2>
+<p>如果出现以下情况，建议及时就医，不要自己瞎折腾：皮肤持续红肿超过一周、出现渗液或结痂、伴有明显的疼痛或发热、自行护理一个月仍无改善。这些可能是玫瑰痤疮、脂溢性皮炎、接触性皮炎等皮肤疾病，需要专业诊断和治疗。</p>
+<p>敏感肌的修护是一场持久战，不要指望几天就能见效。坚持精简护肤、温和修护，给皮肤3-6个月的时间，你会看到明显的改善。</p>`
+},
+{
+  id:3, title:"抗老精华怎么选？A醇、胜肽、玻色因大比拼", category:"护肤", tags:["抗老","精华","A醇","胜肽","玻色因"],
+  cover:"assets/hero-skincare.jpg", date:"2026-09-02", author:"林小美", views:21560,
+  summary:"抗老成分三足鼎立：A醇猛、胜肽稳、玻色因高端。到底哪个才是你的本命抗老成分？一篇讲透三大抗老成分的区别与选择。",
+  content:`<p>过了25岁，胶原蛋白开始流失，细纹、松弛、暗沉慢慢找上门。抗老成了护肤清单上的头等大事。而在抗老领域，有三大成分堪称"顶流"——<strong>A醇、胜肽、玻色因</strong>。它们各有千秋，也各有脾气。今天就来一次全面大比拼，帮你找到最适合自己的抗老方案。</p>
+<h2>三大抗老成分核心对比</h2>
+<h3>A醇（视黄醇）—— 抗老界的"猛药"</h3>
+<p>A醇是维生素A的衍生物，是目前<strong>临床证据最充分、效果最确切</strong>的抗老成分之一。它能促进角质代谢、刺激胶原蛋白生成、淡化细纹、改善毛孔粗大，甚至对色素沉着也有一定效果。</p>
+<p><strong>优点</strong>：效果全面且显著，价格相对亲民，从平价到高端都有选择。<strong>缺点</strong>：刺激性较大，初期使用可能出现泛红、脱皮、干燥；需要建立耐受；孕妇禁用；有光敏性，只能晚上用。</p>
+<h3>胜肽（多肽）—— 抗老界的"温和派"</h3>
+<p>胜肽是小分子蛋白质，由氨基酸组成。不同的胜肽有不同的功效：信号肽（如棕榈酰五肽-4）能刺激胶原蛋白生成；神经递质肽（如乙酰基六肽-8）能放松肌肉、淡化表情纹；载体肽（如蓝铜胜肽）能促进修护、抗氧化。</p>
+<p><strong>优点</strong>：温和不刺激，敏感肌也能用；没有光敏性，早晚都能用；可以和其他成分搭配。<strong>缺点</strong>：效果相对温和，需要长期坚持才能看到明显变化；高浓度胜肽产品价格较高。</p>
+<h3>玻色因（Pro-Xylane）—— 抗老界的"贵妇"</h3>
+<p>玻色因是欧莱雅集团的专利成分，是一种木糖衍生物。它能促进糖胺聚糖（GAGs）的合成，改善真皮层的支撑结构，从而达到紧致、抗皱的效果。同时还能促进表皮-真皮连接（DEJ）的健康，让皮肤更有弹性。</p>
+<p><strong>优点</strong>：温和亲肤，几乎没有刺激性；能改善皮肤的整体紧致度和弹性；对干纹和松弛效果显著。<strong>缺点</strong>：价格昂贵，主要集中在高端产品线；抗皱效果不如A醇迅猛，需要较高浓度才能见效。</p>
+<h2>不同肤质和需求怎么选？</h2>
+<h3>油皮/耐受皮 → 首选A醇</h3>
+<p>油皮和耐受皮的屏障功能较强，能更好地承受A醇的刺激。建议从低浓度（0.1%以下）开始，每周2-3次，逐步建立耐受。A醇对油皮的毛孔粗大和出油问题也有改善作用。</p>
+<h3>干皮/敏感肌 → 首选胜肽或玻色因</h3>
+<p>干皮和敏感肌的屏障较弱，A醇可能加重刺激。胜肽和玻色因都非常温和，可以放心使用。如果预算充足，玻色因对干皮的紧致和弹性改善效果更好；预算有限的话，胜肽是性价比之选。</p>
+<h3>熟龄肌/松弛明显 → A醇+玻色因组合</h3>
+<p>35岁以上的熟龄肌，往往同时面临皱纹和松弛两大问题。A醇负责淡化皱纹、改善肤质，玻色因负责紧致提升、恢复弹性，两者搭配效果1+1>2。建议晚上用A醇，早上用玻色因，避免同时使用造成刺激。</p>
+<h3>表情纹严重 → 关注神经递质肽</h3>
+<p>如果你的主要困扰是抬头纹、鱼尾纹、法令纹等表情纹，可以选择含有乙酰基六肽-8（类肉毒素肽）的产品，它能放松表情肌，减少动态纹的产生。</p>
+<h2>抗老精华使用注意事项</h2>
+<ul>
+<li><strong>防晒是前提</strong>：任何抗老成分都必须配合防晒，否则紫外线会持续破坏胶原蛋白，抗老效果大打折扣。</li>
+<li><strong>耐心等待</strong>：抗老是长期工程，一般需要8-12周才能看到明显效果，不要用了一两周没效果就放弃。</li>
+<li><strong>不要叠加太多猛药</strong>：A醇不要和高浓度酸类、高浓度VC同时使用，以免过度刺激。</li>
+<li><strong>保湿打底</strong>：使用A醇前可以先涂一层保湿精华或面霜，减少直接刺激。</li>
+</ul>
+<blockquote>总结：A醇胜在效果全面、性价比高，但需要建立耐受；胜肽胜在温和百搭、适合长期使用；玻色因胜在紧致提升、温和亲肤，但价格较高。没有最好的成分，只有最适合你的成分。</blockquote>`
+},
+{
+  id:4, title:"正确洁面：你可能一直在伤害你的皮肤", category:"护肤", tags:["洁面","护肤基础","氨基酸洁面"],
+  cover:"assets/hero-products.jpg", date:"2026-08-30", author:"陈医生", views:15340,
+  summary:"洗脸是每天都在做的事，但90%的人都洗错了。过度清洁、水温过高、洁面产品选错……这些习惯正在悄悄毁掉你的皮肤屏障。",
+  content:`<p>洗脸，是护肤的第一步，也是最容易被忽视的一步。很多人花大价钱买精华、买面霜，却在洁面这个环节随便应付。殊不知，<strong>错误的洁面方式是破坏皮肤屏障的头号元凶</strong>。今天我们就来聊聊，到底怎样才是正确的洁面。</p>
+<h2>你的洁面方式可能正在伤害皮肤</h2>
+<p>先来做个小测试，看看你中了几条：</p>
+<ul>
+<li>洗脸水温超过40度，觉得热水才能洗干净</li>
+<li>每次洗脸都用洁面产品，早晚各一次甚至更多</li>
+<li>喜欢用洗脸仪、洗脸刷，觉得越搓越干净</li>
+<li>洗完脸后皮肤紧绷干涩，觉得这才是"洗干净了"</li>
+<li>用皂基洁面，觉得泡沫丰富才好用</li>
+</ul>
+<p>如果中了3条以上，那你的皮肤屏障很可能已经受损了。皮肤屏障是皮肤的"保护墙"，一旦被破坏，各种皮肤问题都会找上门：干燥、敏感、泛红、爆痘、毛孔粗大……</p>
+<h2>洁面的核心原则：温和、适度</h2>
+<h3>1. 选对洁面产品</h3>
+<p><strong>氨基酸洁面</strong>是目前公认最温和的洁面类型，pH值接近皮肤弱酸环境，清洁力适中，不会过度剥夺皮肤的天然油脂。适合所有肤质，尤其是干皮和敏感肌。</p>
+<p><strong>皂基洁面</strong>清洁力强，但碱性大，长期使用会破坏皮肤的弱酸环境，导致屏障受损。只适合大油皮在夏天偶尔使用，不建议长期天天用。</p>
+<p><strong>APG洁面</strong>（烷基糖苷）比氨基酸更温和，清洁力稍弱，适合极度敏感的皮肤或婴幼儿使用。</p>
+<p>怎么判断洁面类型？看成分表：氨基酸洁面的主要表面活性剂通常是"XX酰基XX氨酸钠/钾"（如椰油酰甘氨酸钾、月桂酰谷氨酸钠）；皂基洁面则是"脂肪酸+碱剂"的组合（如硬脂酸+氢氧化钾）。</p>
+<h3>2. 控制洁面频率</h3>
+<p><strong>油皮/混油皮</strong>：早晚各一次，晚上用洁面产品，早上可以用清水或温和洁面。<strong>干皮/敏感肌</strong>：晚上用一次温和洁面，早上直接用清水洗脸即可。<strong>中性皮</strong>：根据季节调整，夏天早晚各一次，冬天晚上一次即可。</p>
+<p>记住：<strong>脸不是越洗越干净，过度清洁反而会刺激皮肤分泌更多油脂</strong>。</p>
+<h3>3. 注意水温</h3>
+<p>最佳洗脸水温是<strong>32-35℃</strong>，接近皮肤温度，手感微温不烫。水温过高会溶解皮肤的天然油脂，破坏屏障；水温过低则毛孔收缩，清洁不彻底。</p>
+<h3>4. 正确的洗脸手法</h3>
+<ol>
+<li>先把手洗干净，再用温水打湿面部。</li>
+<li>取黄豆大小的洁面产品，在手心搓出丰富泡沫（如果是低泡型，直接涂抹即可）。</li>
+<li>用指腹轻柔地在脸上打圈按摩，T区（额头、鼻子、下巴）可以多按摩几下，U区（脸颊）轻轻带过即可。整个过程不超过30秒。</li>
+<li>用温水冲洗干净，注意发际线、下巴边缘不要残留洁面产品。</li>
+<li>用干净的毛巾或洗脸巾轻轻按干水分，不要用力揉搓。</li>
+</ol>
+<h2>这些洁面误区一定要避开</h2>
+<blockquote>误区一：洗脸仪洗得更干净。<br>正解：洗脸仪的物理摩擦对屏障的伤害很大，敏感肌和干皮完全不建议使用。油皮最多每周用1-2次，不能天天用。</blockquote>
+<blockquote>误区二：卸妆后还要再用洁面产品（二次清洁）。<br>正解：现在的卸妆产品大多已经具备洁面能力，卸妆后再用洁面反而过度清洁。除非是大油皮或用了防水型防晒，否则卸妆后用清水冲干净即可。</blockquote>
+<blockquote>误区三：泡沫越多洗得越干净。<br>正解：泡沫多少和清洁力没有直接关系，很多温和的低泡洁面清洁力完全足够。泡沫丰富的皂基洁面反而可能过度清洁。</blockquote>
+<h2>不同肤质的洁面建议</h2>
+<p><strong>油皮</strong>：选择氨基酸复配少量皂基的洁面，清洁力足够又不会太刺激。夏天可以早晚各一次，冬天减少到晚上一次。</p>
+<p><strong>干皮</strong>：选择纯氨基酸或APG洁面，质地偏乳霜状的更好。晚上用一次，早上清水洗脸。</p>
+<p><strong>敏感肌</strong>：选择无香精、无色素、成分极简的氨基酸洁面，最好是经过敏感肌测试的产品。减少洁面频率，必要时早上只用清水。</p>
+<p><strong>痘痘肌</strong>：不要因为长痘就过度清洁，那样反而会加重炎症。选择温和的氨基酸洁面，如果医生开了药用洁面，按医嘱使用。</p>
+<p>洁面是护肤的基础，基础打不好，再贵的精华也吸收不了。从今天开始，好好洗脸，温柔对待你的皮肤。</p>`
+},
+{
+  id:5, title:"秋冬氛围感妆容：奶茶色系温柔出击", category:"彩妆", tags:["秋冬妆容","奶茶色","氛围感"],
+  cover:"assets/hero-makeup.jpg", date:"2026-09-07", author:"苏妲己", views:16780,
+  summary:"秋冬的第一杯奶茶喝了，秋冬的第一个奶茶妆也该安排上了。低饱和奶茶色系，温柔又高级，日常通勤、约会都能hold住。",
+  content:`<p>秋天的第一杯奶茶你喝了吗？比喝奶茶更让人开心的，是画上一个温柔的奶茶色系妆容，在落叶纷飞的季节里做最温柔的氛围感美女。今天就来教大家画一个超适合秋冬的奶茶色系妆容，日常通勤、约会、见家长都能hold住。</p>
+<h2>奶茶色系妆容的核心特点</h2>
+<p>奶茶色系妆容的精髓在于<strong>低饱和、高质感</strong>。整体色调以棕调、杏调、奶茶调为主，避免高饱和度的亮色，追求那种"看起来没怎么化妆但就是很好看"的伪素颜感。</p>
+<ul>
+<li><strong>底妆</strong>：哑光或微光质感，追求干净通透，不要假面感。</li>
+<li><strong>眼妆</strong>：以大地色、奶茶色、杏棕色为主，消肿又温柔。</li>
+<li><strong>腮红</strong>：杏色、奶茶色、豆沙色，斜扫或团式扫法增加氛围感。</li>
+<li><strong>唇妆</strong>：奶茶色、豆沙色、杏棕色，哑光或缎光质地。</li>
+</ul>
+<h2>详细化妆步骤</h2>
+<h3>第一步：清透底妆</h3>
+<p>秋冬皮肤容易干燥，底妆前的保湿一定要做好。选择滋润型的妆前乳，重点涂抹在容易卡粉的部位（鼻翼、嘴角、眼下）。</p>
+<p>粉底选择<strong>滋润型或持妆型中偏滋润的款式</strong>，色号不要选太白，比脖子白半个色号即可。用湿润的美妆蛋轻轻拍开，追求薄透自然的妆效。如果有瑕疵，用遮瑕膏局部遮盖，不要全脸厚涂。</p>
+<p>定妆只定T区和容易出油的部位，U区可以不定妆或用散粉轻轻带过，保留皮肤的自然光泽感。</p>
+<h3>第二步：氛围感眉妆</h3>
+<p>奶茶妆的眉毛不要太锋利，追求自然的毛流感。用眉粉填充眉毛空隙，眉尾轻轻拉长，不要画太挑的眉形，平眉或微挑眉都很适合。用眉刷梳开，让颜色更自然。最后用染眉膏（棕色或灰棕色）刷一遍，统一眉毛颜色。</p>
+<h3>第三步：消肿奶茶眼妆</h3>
+<p>这是整个妆容的重点，用一个四色或五色的奶茶色系眼影盘就能搞定：</p>
+<ol>
+<li><strong>打底</strong>：用最浅的米色或杏色大面积铺在整个眼窝，给眼皮定妆。</li>
+<li><strong>主色</strong>：用奶茶棕色铺在双眼皮褶皱内，以及下眼睑后三分之一，用晕染刷来回晕染，边界要自然过渡。</li>
+<li><strong>加深</strong>：用深一点的棕调眼影，小范围加深眼尾和下眼睑后三分之一，营造深邃感。注意范围不要太大，否则会显脏。</li>
+<li><strong>提亮</strong>：用香槟色或浅珠光色点在眼皮中央和卧蚕处，增加眼睛的立体感。</li>
+</ol>
+<p>眼线选择<strong>棕色眼线胶笔</strong>，沿着睫毛根部画一条内眼线，眼尾微微拉长下垂，营造温柔无辜感。不要画太粗太翘的猫眼眼线，会破坏温柔氛围。</p>
+<p>睫毛夹翘后，刷上棕色睫毛膏（比黑色更温柔），下睫毛也要刷到。如果想要更精致的效果，可以贴几簇自然款的假睫毛。</p>
+<h3>第四步：氛围感腮红</h3>
+<p>腮红是氛围感的关键！选择<strong>杏色或奶茶色的腮红</strong>，用大刷子蘸取后抖掉余粉，斜扫在颧骨下方，从耳前向鼻翼方向扫，既能修容又能增加气色。也可以用团式扫法，打在苹果肌靠下的位置，营造微醺感。</p>
+<p>注意腮红不要打太高，否则会显老；也不要打太靠近鼻翼，否则会显脸大。范围控制在颧骨到苹果肌之间即可。</p>
+<h3>第五步：温柔唇妆</h3>
+<p>选择<strong>奶茶色、豆沙色或杏棕色的口红</strong>，质地推荐缎光或哑光，不要用太油亮的唇釉。</p>
+<p>涂法：先用唇线笔勾勒唇形（可以稍微把唇峰画圆润一点），然后用口红填充。如果觉得颜色太深，可以用手指蘸取后点涂在嘴唇上，打造咬唇效果。最后在嘴唇中央点一点点透明唇蜜，增加水润感，但不要全嘴唇都涂。</p>
+<h2>奶茶色系妆容的配色公式</h2>
+<ul>
+<li><strong>日常通勤款</strong>：杏色眼影 + 杏色腮红 + 奶茶色口红，低调又精致。</li>
+<li><strong>约会温柔款</strong>：粉棕眼影 + 豆沙色腮红 + 豆沙色口红，温柔又甜美。</li>
+<li><strong>气场通勤款</strong>：深棕眼影 + 奶茶色腮红 + 红棕色口红，知性又有气场。</li>
+</ul>
+<h2>秋冬妆容小贴士</h2>
+<blockquote>1. 秋冬皮肤干燥，上妆前可以敷一片补水面膜，或者在粉底中加入1滴精华油，底妆更服帖。<br>2. 奶茶色系妆容的关键是"统一"，眼妆、腮红、唇妆的色调要一致，不要眼妆是冷调、唇妆是暖调。<br>3. 定妆不要太狠，保留一点皮肤的自然光泽更有氛围感。<br>4. 发型也很重要，搭配大波浪卷发或低马尾，氛围感直接拉满。</blockquote>
+<p>这个秋冬，画上温柔的奶茶妆，做一个行走的氛围感美女吧！</p>`
+},
+{
+  id:6, title:"新手化妆完整步骤：从零开始学化妆", category:"彩妆", tags:["新手化妆","化妆步骤","入门教程"],
+  cover:"assets/hero-products.jpg", date:"2026-09-04", author:"苏妲己", views:28960,
+  summary:"刚学化妆不知道从何下手？化妆刷买了一堆不会用？这篇超详细的新手化妆教程，从工具到步骤，手把手教你画出干净的日常妆。",
+  content:`<p>很多刚学化妆的姐妹都有这样的困惑：看了无数美妆视频，一上手就翻车；化妆刷买了十几把，不知道哪把是干嘛的；化妆品堆了一桌子，画出来还不如不画。别着急，化妆是一门技术活，需要循序渐进。今天就来一篇超详细的新手化妆教程，从零开始，手把手教你。</p>
+<h2>新手必备化妆工具清单</h2>
+<p>刚开始学化妆，不需要买太多工具，这几样就够了：</p>
+<ul>
+<li><strong>美妆蛋</strong>：1-2个，用来上粉底，打湿后用更服帖。</li>
+<li><strong>散粉刷</strong>：大的圆头刷，用来定妆。</li>
+<li><strong>腮红刷</strong>：中等大小的斜角刷或圆头刷。</li>
+<li><strong>眼影刷</strong>：3把足够——大号铺色刷、小号晕染刷、细节刷。</li>
+<li><strong>眉刷/螺旋刷</strong>：梳理眉毛和晕染眉粉。</li>
+<li><strong>睫毛夹</strong>：必备！夹翘睫毛是眼妆的灵魂。</li>
+</ul>
+<p>化妆刷不需要买太贵的，几十块钱的套刷对新手来说完全够用。等技术熟练了再升级好的刷子。</p>
+<h2>新手必备化妆品清单</h2>
+<p>按照化妆顺序来列，避免买错买多：</p>
+<ol>
+<li><strong>妆前乳/隔离</strong>：选滋润型或控油型，根据自己肤质来。</li>
+<li><strong>粉底液/气垫</strong>：新手推荐气垫，上手简单不容易出错。</li>
+<li><strong>遮瑕膏</strong>：遮盖痘印、黑眼圈、斑点。</li>
+<li><strong>散粉/蜜粉饼</strong>：定妆用，选透明色或自然色。</li>
+<li><strong>眉笔/眉粉</strong>：新手推荐眉笔，好控制。</li>
+<li><strong>眼影盘</strong>：选大地色系的四色或五色盘，不容易出错。</li>
+<li><strong>眼线胶笔</strong>：比眼线液笔好控制，新手首选。</li>
+<li><strong>睫毛膏</strong>：选黑色，纤长款或浓密款都可以。</li>
+<li><strong>腮红</strong>：选杏色或粉色，日常百搭。</li>
+<li><strong>口红</strong>：选豆沙色或奶茶色，日常不踩雷。</li>
+</ol>
+<p>修容、高光、眼影亮片这些可以等基础妆画好了再慢慢加，新手阶段先把基础步骤练熟。</p>
+<h2>完整化妆步骤详解</h2>
+<h3>第一步：护肤打底（化妆前5分钟）</h3>
+<p>化妆前的护肤很重要，皮肤状态好，底妆才会服帖。洁面后按照"水→精华→乳液→面霜"的顺序护肤，等每一层都吸收了再涂下一层。最后涂一层防晒霜，<strong>防晒是护肤的最后一步，也是化妆的第一步</strong>。等防晒成膜（大约3-5分钟）后再开始化妆。</p>
+<h3>第二步：妆前乳</h3>
+<p>取适量妆前乳，点涂在脸上，用手或美妆蛋推开。妆前乳的作用是平滑肌肤、控油或保湿，让底妆更服帖。毛孔粗大的部位可以多涂一点。</p>
+<h3>第三步：粉底</h3>
+<p>取适量粉底点涂在额头、鼻子、下巴、两颊，用<strong>打湿后挤干的美妆蛋</strong>轻轻拍开。注意是"拍"不是"擦"，拍出来的底妆更服帖。眼下、鼻翼、嘴角这些细节部位，把美妆蛋折起来用尖角处理。</p>
+<p>新手常见错误：粉底涂太多、色号选太白。记住，<strong>粉底的作用是均匀肤色，不是变白</strong>。薄涂一层就够了，瑕疵交给遮瑕。</p>
+<h3>第四步：遮瑕</h3>
+<p>用小刷子或手指蘸取遮瑕，点在需要遮盖的部位：黑眼圈（画倒三角形）、痘印（点涂）、斑点（点涂）。然后用美妆蛋的尖角轻轻拍开，注意不要把遮瑕蹭掉。</p>
+<p>遮瑕的色号选择：遮黑眼圈用比粉底亮一个色号的；遮痘印和斑点用和粉底同色或深半个色号的。</p>
+<h3>第五步：定妆</h3>
+<p>用散粉刷蘸取散粉，抖掉余粉，轻轻扫在T区（额头、鼻子、下巴）和容易出油的部位。干皮可以只定T区，油皮全脸定妆。定妆的目的是让底妆更持久，避免脱妆。</p>
+<p>新手常见错误：散粉用太多，导致脸发白、卡粉。记住，散粉要"少量多次"，抖掉余粉再上脸。</p>
+<h3>第六步：眉毛</h3>
+<p>先用眉刷把眉毛梳顺，然后用眉笔从眉腰开始画，先画下缘线，再画上缘线，最后填充眉峰和眉尾。眉头用眉笔余粉轻轻带过，或者用眉刷刷淡，<strong>眉头一定要淡</strong>，否则会像两条毛毛虫。</p>
+<p>眉形选择：新手推荐<strong>平眉或微挑眉</strong>，比较好画。眉尾不要低于眉头，否则会显没精神。</p>
+<h3>第七步：眼影</h3>
+<p>新手用大地色四色盘最安全：</p>
+<ol>
+<li>用大号铺色刷蘸取最浅色，大面积铺在整个眼窝，给眼皮定妆。</li>
+<li>用中号刷蘸取主色（棕色），铺在双眼皮褶皱内，来回晕染，边界要自然。</li>
+<li>用小号细节刷蘸取深色，小范围加深眼尾和下眼睑后三分之一。</li>
+<li>用手指蘸取亮片色，点在眼皮中央。</li>
+</ol>
+<p>新手常见错误：眼影范围太大、颜色太深、边界不晕染。记住，<strong>眼影的关键是晕染</strong>，边界一定要自然过渡，不能有明显的色块。</p>
+<h3>第八步：眼线</h3>
+<p>新手推荐用<strong>棕色眼线胶笔</strong>，比黑色温柔，比眼线液笔好控制。把眼皮轻轻拉起来，沿着睫毛根部画，填满睫毛缝隙。眼尾可以微微拉长，但不要太翘。如果手抖，可以分段画，先画眼尾，再画眼中，最后画眼头，然后连起来。</p>
+<p>新手可以先只画眼尾三分之一，比较自然，等熟练了再画全眼线。</p>
+<h3>第九步：睫毛</h3>
+<p>这是最容易被新手忽略但又非常重要的一步！用睫毛夹从根部开始，分三段（根部、中部、尾部）夹翘，每段夹5秒。然后刷上睫毛膏，从根部呈"Z"字形往上刷，下睫毛也要刷到。</p>
+<p>刷完睫毛后，如果有苍蝇腿，用干净的睫毛刷刷开。夹翘的睫毛能让眼睛瞬间放大一倍，千万不要省！</p>
+<h3>第十步：腮红</h3>
+<p>用腮红刷蘸取腮红，抖掉余粉，微笑，打在苹果肌上，往太阳穴方向扫。新手选杏色或粉色，不容易出错。范围不要超过鼻翼和眼尾的连线，否则会显脸大。</p>
+<h3>第十一步：口红</h3>
+<p>先用润唇膏打底，然后用口红从嘴唇中央开始涂，向两边晕开。新手可以用手指蘸取口红点涂，更自然。如果唇形不好看，可以先用唇线笔勾勒唇形再填充。</p>
+<p>新手推荐<strong>豆沙色、奶茶色、西柚色</strong>，日常百搭不踩雷。等熟练了再尝试正红、姨妈色等有气场的颜色。</p>
+<h2>新手常见问题解答</h2>
+<blockquote>Q：化妆需要多长时间？<br>A：新手刚开始可能需要30-40分钟，熟练后15-20分钟就能搞定日常妆。</blockquote>
+<blockquote>Q：卸妆用什么？<br>A：用卸妆油或卸妆膏，乳化后冲洗干净，再用洁面产品。眼唇妆用专门的眼唇卸妆液。</blockquote>
+<blockquote>Q：化妆会伤皮肤吗？<br>A：只要选对产品、做好卸妆和护肤，化妆不会伤皮肤。反而防晒+底妆能隔绝部分外界污染。</blockquote>
+<blockquote>Q：学化妆多久能画好？<br>A：因人而异，一般坚持画1-2个月就能画出比较干净的日常妆了。多看多练，不要怕失败。</blockquote>
+<p>化妆是一件让自己开心的事，不要有压力。从最简单的步骤开始，慢慢练习，你一定会越来越熟练的！</p>`
+},
+{
+  id:7, title:"口红挑选指南：不同肤色适合什么色号", category:"彩妆", tags:["口红","肤色","色号推荐"],
+  cover:"assets/hero-makeup.jpg", date:"2026-08-28", author:"苏妲己", views:24560,
+  summary:"口红买了一堆，涂上去却显黑显老？不是口红不好看，是你没选对色号。根据肤色挑口红，一篇讲透冷暖皮、深浅唇的选色逻辑。",
+  content:`<p>"口红一哥"李佳琦说过："没有不好看的口红，只有不适合的色号。"很多姐妹买口红全靠种草，看博主涂得好看就买，结果自己上嘴要么显黑、要么显老、要么像生病。其实，选口红的核心是<strong>根据自己的肤色和唇色来挑</strong>。今天就来一篇超全的口红挑选指南。</p>
+<h2>第一步：判断你的肤色冷暖</h2>
+<p>这是选口红最关键的一步。冷皮适合冷调口红，暖皮适合暖调口红，中性皮则基本不挑。怎么判断？</p>
+<h3>方法一：看血管颜色</h3>
+<p>在自然光下看手腕内侧的血管：<strong>偏蓝紫色</strong>→冷皮；<strong>偏绿色</strong>→暖皮；<strong>蓝绿都有</strong>→中性皮。</p>
+<h3>方法二：看金银首饰</h3>
+<p>戴银色首饰更好看→冷皮；戴金色首饰更好看→暖皮；都好看→中性皮。</p>
+<h3>方法三：看晒后反应</h3>
+<p>容易晒红但不容易晒黑→冷皮；容易晒黑但不容易晒红→暖皮。</p>
+<h2>第二步：判断你的唇色深浅</h2>
+<p>原生唇色也会影响口红的上嘴效果。<strong>深唇</strong>（唇色偏深偏紫）涂浅色系口红容易不显色，需要先打底；<strong>浅唇</strong>（唇色偏淡偏粉）基本什么颜色都能还原。</p>
+<p>判断方法：不涂口红时，对着自然光看，如果唇色明显比周围皮肤深，就是深唇；如果唇色很淡，几乎和肤色接近，就是浅唇。</p>
+<h2>不同肤色的口红推荐</h2>
+<h3>冷白皮（冷调+白皙）</h3>
+<p>冷白皮是最不挑口红的肤色，基本什么颜色都能hold住。尤其适合：</p>
+<ul>
+<li><strong>蓝调正红</strong>：显白显气场，比如经典的Ruby Woo、迪奥999哑光版。</li>
+<li><strong>梅子色/浆果色</strong>：冷白皮涂超有气质，秋冬必备。</li>
+<li><strong>樱花粉/豆沙粉</strong>：温柔日常，素颜也能涂。</li>
+<li><strong>火龙果色/玫红色</strong>：冷白皮专属，暖皮涂会显黑。</li>
+</ul>
+<p>避雷：橘调过重的颜色（如南瓜色、土橘色），会让冷白皮显得气色不好。</p>
+<h3>暖白皮（暖调+白皙）</h3>
+<p>暖白皮适合暖调、橘调的口红：</p>
+<ul>
+<li><strong>橘调红/番茄红</strong>：显白又元气，比如YSL方管13、TF16。</li>
+<li><strong>奶茶色/杏色</strong>：温柔日常，通勤首选。</li>
+<li><strong>珊瑚色/西柚色</strong>：青春减龄，春夏必备。</li>
+<li><strong>焦糖色/红棕色</strong>：秋冬氛围感拉满。</li>
+</ul>
+<p>避雷：冷调的玫红色、火龙果色，会和暖皮的底色冲突，显黑显土。</p>
+<h3>黄皮/自然肤色（大多数亚洲人）</h3>
+<p>黄皮选口红的核心是<strong>避开荧光色和冷调粉色</strong>，选择带红调、橘调、棕调的颜色：</p>
+<ul>
+<li><strong>红棕色/焦糖色</strong>：黄皮天菜，显白又有气质，比如MAC Chili、3CE Taupe。</li>
+<li><strong>橘调红/番茄红</strong>：提气色显白，不挑场合。</li>
+<li><strong>豆沙色（偏红调）</strong>：日常百搭，素颜也能涂。注意选偏红的豆沙，偏粉的豆沙会显黑。</li>
+<li><strong>烂番茄色/枫叶红</strong>：秋冬必备，显白一级棒。</li>
+</ul>
+<p>避雷：荧光粉、芭比粉、浅珊瑚色、冷调玫红，这些颜色会让黄皮显得更黄更黑。</p>
+<h3>黑皮/健康肤色</h3>
+<p>黑皮适合高饱和度、暖调的口红，能衬出健康的光泽感：</p>
+<ul>
+<li><strong>正红色/橘红色</strong>：气场全开，黑皮涂超有范儿。</li>
+<li><strong>红棕色/巧克力色</strong>：高级感满满，秋冬必备。</li>
+<li><strong>南瓜色/土橘色</strong>：和黑皮的底色很搭，复古又时髦。</li>
+<li><strong>浆果色/深梅子色</strong>：冷调黑皮可以尝试，超有气场。</li>
+</ul>
+<p>避雷：浅粉色、裸色、荧光色，会和黑皮形成强烈对比，显脏显土。</p>
+<h2>不同唇色的应对技巧</h2>
+<h3>深唇怎么办？</h3>
+<ul>
+<li>涂口红前先用<strong>遮瑕膏或唇部打底</strong>遮盖原生唇色，这样口红颜色更还原。</li>
+<li>优先选择<strong>高遮盖力的哑光口红</strong>，浅色系的镜面唇釉不适合深唇。</li>
+<li>深唇本身就有颜色，涂<strong>红棕色、姨妈色、正红色</strong>会很好看，不用刻意遮盖。</li>
+</ul>
+<h3>浅唇怎么办？</h3>
+<p>浅唇基本什么颜色都能涂，但要注意：浅唇涂太浅的颜色（如裸色、奶茶色）可能会显得气色差，可以先涂一层润唇膏，再叠涂口红，或者选择带一点红调的浅色。</p>
+<h2>不同场合的口红选择</h2>
+<ul>
+<li><strong>日常通勤</strong>：豆沙色、奶茶色、西柚色，低调不张扬。</li>
+<li><strong>约会</strong>：水红色、草莓红、豆沙粉，温柔有气色。</li>
+<li><strong>正式场合/派对</strong>：正红色、红棕色、浆果色，气场全开。</li>
+<li><strong>素颜</strong>：豆沙色、珊瑚色、带血色的润唇膏，提气色不突兀。</li>
+</ul>
+<h2>口红试色小贴士</h2>
+<blockquote>1. 一定要在自然光下试色，商场的灯光会让颜色失真。<br>2. 试在嘴唇上比试在手上更准，因为唇色和肤色会影响最终效果。<br>3. 买之前先搜搜真实试色，尤其是和你肤色相近的博主试色。<br>4. 口红开封后保质期一般是1-2年，过期了就别用了，可能会引起唇部过敏。</blockquote>
+<p>选口红没有标准答案，多试多涂，找到最适合自己的那一支。毕竟，口红是女人的战袍，选对了，气场全开！</p>`
+},
+{
+  id:8, title:"眼妆进阶：三种日常眼妆教程", category:"彩妆", tags:["眼妆","眼影教程","日常妆"],
+  cover:"assets/hero-products.jpg", date:"2026-08-25", author:"苏妲己", views:19870,
+  summary:"大地色画腻了？想换个风格又怕翻车？这三种日常眼妆——温柔奶茶妆、清冷灰棕妆、元气橘棕妆，简单好上手，新手也能学会。",
+  content:`<p>很多姐妹画眼妆，永远是一个大地色盘走天下，画来画去都是一个样。想尝试新颜色又怕翻车，画成"被打了一拳"。今天就来教大家三种<strong>简单好上手、日常不夸张</strong>的眼妆，用最基础的眼影盘就能画，新手也能学会。</p>
+<h2>眼妆通用技巧（先掌握这些）</h2>
+<p>在学具体眼妆之前，先掌握几个通用技巧，能让你的眼妆水平提升一个档次：</p>
+<ul>
+<li><strong>打底</strong>：画眼影前先用散粉或眼影打底膏给眼皮定妆，眼影更显色更持久。</li>
+<li><strong>少量多次</strong>：眼影不要一次蘸太多，抖掉余粉再上眼，不够再叠加。</li>
+<li><strong>晕染是灵魂</strong>：每画一个颜色都要晕染边界，让颜色自然过渡，不能有明显色块。</li>
+<li><strong>下眼睑别忘了</strong>：下眼睑后三分之一也要带到，眼睛会更有神更完整。</li>
+<li><strong>睫毛和眼线是点睛</strong>：眼影画得再好，不夹睫毛不画眼线，效果也会大打折扣。</li>
+</ul>
+<h2>第一种：温柔奶茶眼妆（日常通勤首选）</h2>
+<p>这是最百搭、最不挑人的眼妆，用奶茶色系眼影盘就能画，温柔又消肿，日常通勤、约会、见家长都适合。</p>
+<h3>用到的颜色</h3>
+<p>米色（打底）、奶茶棕（主色）、深棕（加深）、香槟色（提亮）</p>
+<h3>步骤</h3>
+<ol>
+<li><strong>打底</strong>：用大号铺色刷蘸取米色，大面积铺在整个眼窝，包括眉骨下方，给眼皮定妆。</li>
+<li><strong>主色</strong>：用中号眼影刷蘸取奶茶棕，铺在双眼皮褶皱内，以及下眼睑后三分之一。用干净的晕染刷来回晕染边界，让颜色自然过渡到眼窝。</li>
+<li><strong>加深</strong>：用小号细节刷蘸取深棕，小范围加深眼尾三角区（眼尾+双眼皮褶皱后三分之一），以及下眼睑后三分之一。注意范围要小，不要超过双眼皮褶皱太多。</li>
+<li><strong>提亮</strong>：用手指蘸取香槟色亮片，点在眼皮中央和卧蚕处。不要大面积铺，点涂就好。</li>
+<li><strong>眼线</strong>：用棕色眼线胶笔沿着睫毛根部画内眼线，眼尾微微拉长下垂，营造温柔无辜感。</li>
+<li><strong>睫毛</strong>：夹翘睫毛，刷上棕色睫毛膏，下睫毛也要刷到。</li>
+</ol>
+<p><strong>要点</strong>：奶茶妆的关键是"淡"，颜色不要太重，范围不要太大，追求自然温柔的感觉。</p>
+<h2>第二种：清冷灰棕眼妆（高级感拉满）</h2>
+<p>看腻了暖色调？试试清冷的灰棕色系，高级又有距离感，特别适合冷皮和秋冬搭配大衣。</p>
+<h3>用到的颜色</h3>
+<p>浅灰棕（打底）、灰棕色（主色）、深灰棕（加深）、银白珠光（提亮）</p>
+<h3>步骤</h3>
+<ol>
+<li><strong>打底</strong>：用浅灰棕大面积铺在整个眼窝，灰调能很好地消肿。</li>
+<li><strong>主色</strong>：用灰棕色铺在双眼皮褶皱内，范围可以比奶茶妆稍微大一点，带到眼窝的二分之一。下眼睑全眼都带到，前浅后深。</li>
+<li><strong>加深</strong>：用深灰棕加深眼尾和下眼睑后三分之一，营造深邃感。灰棕色的眼妆可以稍微画浓一点，因为灰调本身就比较低调。</li>
+<li><strong>提亮</strong>：用银白珠光提亮眼皮中央、卧蚕和眼头，清冷感的关键就是眼头的提亮，能让眼睛看起来更清澈。</li>
+<li><strong>眼线</strong>：用黑色或深棕色眼线胶笔画内眼线，眼尾可以稍微拉长上挑，但不要太夸张。灰棕眼妆配黑色眼线更有气场。</li>
+<li><strong>睫毛</strong>：夹翘后刷黑色睫毛膏，可以贴几簇自然款假睫毛，增加精致感。</li>
+</ol>
+<p><strong>要点</strong>：灰棕眼妆的关键是"冷"，不要混入暖色调。腮红和口红也要搭配冷调的颜色（如豆沙粉、梅子色），整体才协调。</p>
+<h2>第三种：元气橘棕眼妆（春夏活力感）</h2>
+<p>想要元气满满的感觉？橘棕色眼妆是不二之选，特别适合暖皮，春夏涂超有活力。</p>
+<h3>用到的颜色</h3>
+<p>浅杏色（打底）、橘棕色（主色）、深棕（加深）、金色珠光（提亮）</p>
+<h3>步骤</h3>
+<ol>
+<li><strong>打底</strong>：用浅杏色大面积铺在整个眼窝，暖调打底让后续颜色更显色。</li>
+<li><strong>主色</strong>：用橘棕色铺在双眼皮褶皱内，以及下眼睑后三分之二。橘棕色比较显色，注意少量多次，不要一次涂太多。晕染边界要自然。</li>
+<li><strong>加深</strong>：用深棕加深眼尾三角区，增加深邃感，避免橘色显肿。橘色系眼妆一定要加深眼尾，否则会显得眼睛肿。</li>
+<li><strong>提亮</strong>：用金色珠光点在眼皮中央和卧蚕，金色和橘色是绝配，元气感拉满。</li>
+<li><strong>眼线</strong>：用棕色眼线胶笔画内眼线，眼尾自然拉长，不要上挑太明显，保持元气感。</li>
+<li><strong>睫毛</strong>：夹翘后刷棕色睫毛膏，下睫毛刷得明显一点，更有狗狗眼的无辜感。</li>
+</ol>
+<p><strong>要点</strong>：橘棕眼妆的关键是"暖"，腮红搭配杏色或橘色，口红搭配番茄红或焦糖色，整体元气满满。</p>
+<h2>三种眼妆对比总结</h2>
+<ul>
+<li><strong>温柔奶茶妆</strong>：暖调、低调、百搭，适合所有肤色，日常首选。</li>
+<li><strong>清冷灰棕妆</strong>：冷调、高级、有距离感，适合冷皮，秋冬搭配大衣。</li>
+<li><strong>元气橘棕妆</strong>：暖调、活力、减龄，适合暖皮，春夏必备。</li>
+</ul>
+<h2>眼妆常见问题解答</h2>
+<blockquote>Q：眼影总是飞粉怎么办？<br>A：飞粉是正常现象，画之前先在手上抖掉余粉，画完后用大刷子扫掉眼下的余粉。也可以先画眼妆再画底妆，这样飞粉不会弄脏底妆。</blockquote>
+<blockquote>Q：内双/单眼皮怎么画眼影？<br>A：内双和单眼皮画眼影的范围要小，主色只画在睁开眼能看到的范围内（一般是睫毛根部到双眼皮褶皱上方2mm）。加深色重点放在眼尾，能让眼睛看起来更深邃。</blockquote>
+<blockquote>Q：眼影显脏怎么办？<br>A：显脏通常是因为颜色太多、边界没晕染开、或者用了不适合自己的颜色。新手建议一个眼妆最多用3-4个颜色，每画一个颜色都要晕染边界。</blockquote>
+<blockquote>Q：眼影盘怎么选？<br>A：新手建议买四色或五色的综合盘，颜色搭配好了不容易出错。等熟练了再买单色眼影自己搭配。大地色盘是最实用的，建议第一个眼影盘买大地色。</blockquote>
+<p>眼妆是化妆中最需要练习的部分，不要怕画错，多练几次就能找到感觉。从最简单的奶茶妆开始，慢慢尝试不同风格，你会发现眼妆的乐趣！</p>`
+},
+{
+  id:9, title:"2026流行发型趋势：中长发回潮", category:"发型护发", tags:["发型趋势","中长发","2026流行"],
+  cover:"assets/hero-makeup.jpg", date:"2026-09-06", author:"Tony老师", views:17650,
+  summary:"短发留腻了，长发又太难打理？2026年中长发强势回潮，及肩到锁骨的长度刚刚好，好打理又显气质，这5款中长发一定要试试。",
+  content:`<p>"发型是女人的第二张脸"，一个适合自己的发型能让颜值提升好几个档次。回顾近几年的发型趋势，短发火了好几年，长发也一直有市场，但2026年，<strong>中长发强势回潮</strong>，成为最受欢迎的发型长度。及肩到锁骨的长度，既保留了长发的温柔，又有短发的利落，好打理又显气质。今天就来聊聊2026年最火的5款中长发。</p>
+<h2>为什么中长发成为2026年的主流？</h2>
+<ul>
+<li><strong>好打理</strong>：比长发省时间，比长发少掉发，吹干5分钟搞定。</li>
+<li><strong>显气质</strong>：及肩到锁骨的长度刚好露出颈部线条，显脖子长、显脸小。</li>
+<li><strong>百搭</strong>：可盐可甜，可直可卷，适合各种脸型和风格。</li>
+<li><strong>过渡期友好</strong>：留短发的想留长，中长发是最尴尬也最好看的过渡期。</li>
+</ul>
+<h2>2026年最火的5款中长发</h2>
+<h3>第一款：法式慵懒卷</h3>
+<p>法式慵懒卷是这两年最火的卷发，没有之一。特点是<strong>大弧度的自然卷度，蓬松不刻意</strong>，看起来像是刚睡醒的自然凌乱感，但其实处处是心机。</p>
+<p><strong>适合脸型</strong>：鹅蛋脸、圆脸、方脸都适合，卷度能修饰脸型轮廓。<strong>适合发质</strong>：发量少、细软塌的发质，烫完蓬松显发量多。发量多的也可以烫，但要注意打薄。</p>
+<p><strong>打理技巧</strong>：洗完头吹到半干，抹上弹力素或卷发霜，用手抓出卷度，自然风干即可。不需要用卷发棒，自然的凌乱感才是法式的精髓。</p>
+<p><strong>搭配建议</strong>：搭配法式刘海或八字刘海，温柔又浪漫。发色推荐黑茶色、蜜茶棕、焦糖棕，低调有质感。</p>
+<h3>第二款：锁骨直发</h3>
+<p>如果你不喜欢卷发，锁骨直发是最安全的选择。长度刚好到锁骨，<strong>发尾剪齐或微微内扣</strong>，干净利落又显气质。</p>
+<p><strong>适合脸型</strong>：鹅蛋脸、长脸、心形脸。圆脸也可以，但要注意头顶要蓬松，否则会显脸更圆。<strong>适合发质</strong>：所有发质，尤其是发质好、有光泽的直发，效果最佳。</p>
+<p><strong>打理技巧</strong>：洗完头用梳子梳顺，吹的时候用圆梳向内扣，发尾自然内扣。如果头发毛躁，可以抹一点护发精油，增加光泽感。</p>
+<p><strong>搭配建议</strong>：搭配空气刘海或侧分，知性优雅。发色推荐黑色、深棕色、冷茶色，干净高级。</p>
+<h3>第三款：层次碎发</h3>
+<p>层次碎发是2026年的新宠，特点是<strong>有明显的层次修剪，发尾参差不齐</strong>，轻盈有动感，不像传统的齐发尾那么厚重。</p>
+<p><strong>适合脸型</strong>：方脸、圆脸、大脸，层次能修饰脸部轮廓，显脸小。<strong>适合发质</strong>：发量多、头发厚重的发质，打薄后轻盈很多。发量少的不建议，会显得发量更少。</p>
+<p><strong>打理技巧</strong>：洗完头吹到八成干，用手抓出蓬松感，抹一点发泥或造型喷雾，增加纹理感。不需要太整齐，自然的凌乱感更好看。</p>
+<p><strong>搭配建议</strong>：搭配眉上刘海或法式刘海，个性又时髦。发色推荐冷棕色、灰棕色、挑染，增加层次感。</p>
+<h3>第四款：羊毛卷/泡面卷</h3>
+<p>羊毛卷在前几年火过一阵，2026年又回潮了，但这次的卷度更自然，不是那种小碎卷，而是<strong>中等大小的S型卷度</strong>，蓬松可爱又显发量。</p>
+<p><strong>适合脸型</strong>：鹅蛋脸、长脸、心形脸。圆脸要谨慎，卷度太蓬可能会显脸更大。<strong>适合发质</strong>：发量少、细软塌的发质，烫完发量翻倍。发量多的不建议，会变成爆炸头。</p>
+<p><strong>打理技巧</strong>：洗完头不要用梳子梳，用手抓出卷度，抹上弹力素，自然风干。干了之后如果毛躁，可以喷一点水，用手抓一抓，卷度就回来了。</p>
+<p><strong>搭配建议</strong>：搭配空气刘海或齐刘海，可爱减龄。发色推荐蜜茶棕、焦糖棕、暖棕色，温柔又可爱。</p>
+<h3>第五款：一刀切Bob</h3>
+<p>一刀切Bob是中长发里最利落的一款，特点是<strong>发尾剪得整整齐齐，没有层次</strong>，长度在下巴到肩膀之间，干净利落又有气场。</p>
+<p><strong>适合脸型</strong>：鹅蛋脸、心形脸、小脸。方脸和圆脸要谨慎，齐发尾可能会显得脸更方更圆。<strong>适合发质</strong>：发质硬、发量多的发质，剪完有型不软塌。细软塌的发质也可以，但需要每天打理造型。</p>
+<p><strong>打理技巧</strong>：洗完头用圆梳吹顺，发尾可以微微内扣或外翻。如果头发毛躁，用直板夹夹顺，保持干净利落的感觉。</p>
+<p><strong>搭配建议</strong>：搭配侧分或中分，气场全开。发色推荐黑色、深棕色、冷茶色，高级有质感。</p>
+<h2>不同脸型的中长发选择</h2>
+<ul>
+<li><strong>鹅蛋脸</strong>：百搭，什么中长发都好看，随便选。</li>
+<li><strong>圆脸</strong>：选择有层次、头顶蓬松的发型，避免齐发尾和太卷的发型。推荐法式慵懒卷、层次碎发。</li>
+<li><strong>方脸</strong>：选择卷度柔和、能修饰下颌线的发型，避免一刀切和太直的发型。推荐法式慵懒卷、锁骨直发（发尾内扣）。</li>
+<li><strong>长脸</strong>：选择有刘海、卷度横向展开的发型，避免太长太直的发型。推荐羊毛卷、锁骨直发+刘海。</li>
+<li><strong>心形脸（额头宽下巴尖）</strong>：选择能修饰额头、增加下巴两侧发量的发型。推荐法式刘海+锁骨发、层次碎发。</li>
+</ul>
+<h2>中长发打理小贴士</h2>
+<blockquote>1. 中长发最尴尬的是发尾外翘，洗完头吹的时候注意把发尾向内扣，或者睡前把发尾扎成小丸子，第二天就内扣了。<br>2. 定期修剪发尾，中长发一般1-2个月修一次，保持发型的形状。<br>3. 染烫后的头发要注意护理，每周用1-2次发膜，避免发尾干枯毛躁。<br>4. 中长发可以尝试半扎发、低马尾、丸子头等造型，比长发好扎，比短发多变。</blockquote>
+<p>2026年，不妨试试中长发，这个长度真的是刚刚好——好打理、显气质、百搭不挑人。找一个靠谱的Tony老师，换个发型换个心情吧！</p>`
+},
+{
+  id:10, title:"护发心得：干枯毛躁发质拯救计划", category:"发型护发", tags:["护发","干枯毛躁","发膜"],
+  cover:"assets/hero-ingredients.jpg", date:"2026-09-01", author:"Tony老师", views:21340,
+  summary:"头发干枯毛躁像稻草？梳不开、掉发多、没光泽？这份为期30天的干枯毛躁发质拯救计划，从洗护到造型，全方位修复受损发质。",
+  content:`<p>"头可断，发型不能乱"——但如果你的头发干枯毛躁像稻草，再好看的发型也hold不住。频繁染烫、过度清洁、热造型、紫外线……这些都在悄悄伤害你的头发。很多姐妹花大价钱做头发护理，却不见效果，其实是方法不对。今天就来一份<strong>为期30天的干枯毛躁发质拯救计划</strong>，坚持下来，头发会有质的改变。</p>
+<h2>先搞清楚：你的头发为什么干枯毛躁？</h2>
+<p>头发的结构从外到内分为毛鳞片、毛皮质、毛髓质。健康的毛鳞片是紧密排列的，像鱼鳞一样，能锁住水分和营养，头发看起来有光泽。当毛鳞片受损翘起时，水分和营养流失，头发就会变得干枯、毛躁、没有光泽。</p>
+<p>常见的损伤原因：</p>
+<ul>
+<li><strong>频繁染烫</strong>：染烫剂中的化学成分会打开毛鳞片，损伤头发结构。</li>
+<li><strong>过度清洁</strong>：用含硅油的洗发水？不，是用清洁力太强的洗发水，或者洗头太频繁。</li>
+<li><strong>热造型</strong>：吹风机、直板夹、卷发棒的高温会损伤毛鳞片。</li>
+<li><strong>紫外线</strong>：阳光中的紫外线会让头发中的蛋白质变性，导致头发干枯。</li>
+<li><strong>营养不良</strong>：缺乏蛋白质、维生素、微量元素，头发得不到足够的营养。</li>
+<li><strong>睡眠不足、压力大</strong>：会影响头皮的血液循环和新陈代谢。</li>
+</ul>
+<h2>30天拯救计划：第一阶段（第1-7天）—— 停止损伤</h2>
+<p>修复的第一步是停止继续损伤。就像皮肤受伤了要先停止刺激一样，头发受损了也要先停止伤害行为。</p>
+<h3>1. 暂停所有染烫和热造型</h3>
+<p>这30天内，不要染发、不要烫发、不要用直板夹和卷发棒。吹风机也尽量少用，如果必须用，选择低温档，距离头发20cm以上，吹到八成干就好，不要完全吹干。</p>
+<h3>2. 换一套温和的洗护产品</h3>
+<p><strong>洗发水</strong>：选择氨基酸表活的温和洗发水，避开含SLS/SLES（月桂醇硫酸酯钠/月桂醇聚醚硫酸酯钠）的强清洁洗发水。如果头发特别干枯，可以选择含硅油的滋润型洗发水（硅油能在头发表面形成保护膜，减少毛躁）。</p>
+<p><strong>护发素</strong>：每次洗头都必须用护发素！涂抹在发中和发尾，不要涂在头皮上，停留3-5分钟再冲洗。</p>
+<p><strong>发膜</strong>：每周用2-3次发膜，代替护发素，涂抹后用热毛巾包裹10-15分钟，促进吸收。</p>
+<h3>3. 正确的洗头方式</h3>
+<ul>
+<li>洗头水温不要太高，38℃左右最佳（比体温略高一点）。</li>
+<li>洗发水先在手心搓出泡沫再上头，不要直接倒在头皮上。</li>
+<li>用指腹轻柔按摩头皮，不要用指甲抓。</li>
+<li>洗头时间不要太长，5-10分钟足够。</li>
+<li>洗完头用毛巾轻轻按压吸干水分，不要用力揉搓。</li>
+</ul>
+<h2>30天拯救计划：第二阶段（第8-21天）—— 深度修复</h2>
+<p>停止损伤后，开始给头发补充营养，深度修复受损的毛鳞片。</p>
+<h3>1. 每周2-3次发膜护理</h3>
+<p>选择含有<strong>角蛋白、氨基酸、神经酰胺、植物油（摩洛哥坚果油、椰子油、橄榄油）</strong>等成分的发膜。洗完头后，把头发擦到不滴水，取适量发膜涂抹在发中和发尾，用手指梳理均匀，然后用热毛巾或浴帽包裹15-20分钟，让营养充分渗透，最后用温水冲洗干净。</p>
+<p><strong>进阶版：油敷法</strong>。洗头前，取适量护发油（摩洛哥坚果油、椰子油都可以）涂抹在干发上，重点涂抹发尾，用梳子梳均匀，包裹30分钟到1小时，然后正常洗头。这个方法对极度干枯的头发效果特别好。</p>
+<h3>2. 每天使用护发精油</h3>
+<p>护发精油是干枯毛躁发质的救星！洗完头吹到半干时，取1-2滴护发精油在手心搓热，涂抹在发中和发尾，然后再吹干。干发时也可以用，取少量涂抹在发尾，抚平毛躁，增加光泽。</p>
+<p>选择护发精油时，优先选择<strong>摩洛哥坚果油（阿甘油）、角鲨烷、荷荷巴油</strong>等轻质油脂，不要选太厚重的矿物油，否则会让头发油腻扁塌。</p>
+<h3>3. 正确梳发，减少拉扯</h3>
+<p>干枯毛躁的头发容易打结，用力梳会导致断发和掉发。正确的做法是：</p>
+<ul>
+<li>选择<strong>宽齿梳或气囊梳</strong>，不要用细齿梳。</li>
+<li>梳发前先抹一点护发精油，减少摩擦。</li>
+<li>从发尾开始梳，先把发尾的结梳开，再梳中段，最后梳发根。</li>
+<li>湿发时不要用力梳，用宽齿梳轻轻梳开即可。</li>
+<li>不要每天梳太多次，早晚各一次足够。</li>
+</ul>
+<h3>4. 注意防晒</h3>
+<p>头发也需要防晒！紫外线会损伤头发中的角蛋白，导致头发干枯、褪色、断裂。夏天出门戴帽子或撑伞，或者使用含防晒成分的护发产品。</p>
+<h2>30天拯救计划：第三阶段（第22-30天）—— 日常养护</h2>
+<p>经过前两个阶段的修复，头发已经有明显改善了。最后一个阶段是养成日常养护的好习惯，让头发持续保持健康状态。</p>
+<h3>1. 调整饮食，从内养发</h3>
+<p>头发的主要成分是角蛋白，所以<strong>蛋白质的摄入非常重要</strong>。每天保证摄入足够的优质蛋白质：鸡蛋、牛奶、鱼肉、豆制品、瘦肉等。</p>
+<p>同时注意补充：</p>
+<ul>
+<li><strong>维生素B族</strong>：促进头发生长，全谷物、瘦肉、蛋类中含量丰富。</li>
+<li><strong>维生素E</strong>：抗氧化，保护头发，坚果、植物油中含量丰富。</li>
+<li><strong>铁和锌</strong>：预防脱发，红肉、动物肝脏、海鲜中含量丰富。</li>
+<li><strong>Omega-3脂肪酸</strong>：滋润头皮和头发，深海鱼、亚麻籽、核桃中含量丰富。</li>
+</ul>
+<h3>2. 保证睡眠，减少压力</h3>
+<p>熬夜和压力大会导致头皮血液循环不畅，影响头发的营养供应，导致脱发和头发干枯。每天保证7-8小时的睡眠，学会放松心情，减少焦虑。</p>
+<h3>3. 定期修剪发尾</h3>
+<p>发尾是最容易干枯分叉的部位，而且分叉不会自己愈合，只会越分越严重。每1-2个月修剪一次发尾，剪掉分叉的部分，让头发保持健康。</p>
+<h3>4. 减少扎发和拉扯</h3>
+<p>经常扎很紧的马尾或丸子头，会拉扯头皮和头发，导致断发和发际线后移。尽量少扎发，或者扎松一点的发型。不要用橡皮筋直接扎头发，用发圈或大肠圈，减少拉扯。</p>
+<h2>干枯毛躁发质的常见误区</h2>
+<blockquote>误区一：频繁洗头会让头发更干。<br>正解：洗头频率和头发干枯没有直接关系，关键是用对洗发水。如果头皮出油多，每天洗也没关系，用温和的洗发水，重点洗头皮，发尾用护发素护理即可。</blockquote>
+<blockquote>误区二：护发素涂在头皮上更滋养。<br>正解：护发素只能涂在发中和发尾，涂在头皮上会堵塞毛囊，导致头皮出油、头屑甚至脱发。</blockquote>
+<blockquote>误区三：发膜用得越多越好。<br>正解：发膜每周2-3次足够，用太多会导致头发营养过剩，变得油腻扁塌。每次用量也不要太多，硬币大小足够。</blockquote>
+<blockquote>误区四：干枯的头发能完全恢复到健康状态。<br>正解：已经受损的头发是无法完全修复的，因为头发是死细胞。我们能做的是用护发产品在头发表面形成保护膜，改善外观和手感，同时保护新长出来的头发不受损伤。所以，预防比修复更重要！</blockquote>
+<h2>30天后的效果预期</h2>
+<p>坚持30天后，你会发现：</p>
+<ul>
+<li>头发明显不那么毛躁了，梳起来更顺滑。</li>
+<li>发尾的干枯有所改善，分叉减少。</li>
+<li>头发有光泽了，不再像稻草一样暗淡无光。</li>
+<li>掉发和断发减少了。</li>
+</ul>
+<p>当然，头发的生长速度是每月1-2cm，完全健康的头发需要更长时间的养护。但只要坚持正确的护理方法，你的头发一定会越来越好。</p>
+<p>护发是一场持久战，不要指望几天就能见效。从今天开始，好好对待你的头发，它一定会回报你一头健康亮丽的秀发！</p>`
+},
+{
+  id:11, title:"身体护理不能偷懒：从头到脚的精致", category:"美体香氛", tags:["身体护理","磨砂膏","身体乳"],
+  cover:"assets/hero-skincare.jpg", date:"2026-08-26", author:"林小美", views:14560,
+  summary:"脸护得再好，身体皮肤粗糙干燥也会拉低整体精致度。这份从头到脚的身体护理指南，帮你养成嫩滑牛奶肌，做个精致到脚趾尖的女人。",
+  content:`<p>很多姐妹护肤只在乎脸，身体护理却完全忽略。结果就是脸白白嫩嫩，身体皮肤却粗糙干燥、鸡皮疙瘩、后背长痘，一到夏天穿吊带短裙就尴尬。其实，<strong>精致的女人都是从头到脚的</strong>。今天就来一份从头到脚的身体护理指南，帮你养成嫩滑牛奶肌。</p>
+<h2>身体护理的核心原则</h2>
+<ul>
+<li><strong>清洁要温和</strong>：不要用清洁力太强的沐浴露，也不要用太烫的水洗澡。</li>
+<li><strong>保湿要及时</strong>：洗完澡3分钟内涂身体乳，这是保湿的黄金时间。</li>
+<li><strong>定期去角质</strong>：每周1-2次身体去角质，帮助老废角质脱落，皮肤更光滑。</li>
+<li><strong>分区护理</strong>：不同部位的皮肤状况不同，需要针对性护理。</li>
+<li><strong>防晒不能忘</strong>：身体皮肤也需要防晒，尤其是夏天穿短袖短裙的时候。</li>
+</ul>
+<h2>从头到脚的详细护理方案</h2>
+<h3>1. 颈部护理</h3>
+<p>颈部是最容易暴露年龄的部位，但很多人只护脸不护脖子。颈部皮肤薄，皮脂腺少，容易干燥长皱纹。</p>
+<p><strong>护理方法</strong>：</p>
+<ul>
+<li>涂面霜的时候顺便带到脖子，从下往上涂抹，提拉按摩。</li>
+<li>每周1-2次颈膜，或者用面膜敷完脸后敷脖子（不浪费）。</li>
+<li>不要长期低头看手机，减少颈纹的产生。</li>
+<li>睡觉用低一点的枕头，避免颈部褶皱。</li>
+</ul>
+<h3>2. 肩部和背部护理</h3>
+<p>肩背部位皮脂腺丰富，容易出油长痘，尤其是后背，很多人有"背痘"的困扰。同时，肩背也是穿吊带和露背装时的重点部位。</p>
+<p><strong>护理方法</strong>：</p>
+<ul>
+<li><strong>清洁</strong>：用含水杨酸或果酸的沐浴露，帮助疏通毛孔，预防痘痘。后背可以用长柄沐浴刷，清洁更彻底。</li>
+<li><strong>去角质</strong>：每周1次身体磨砂，重点按摩肩背部位，帮助老废角质脱落。</li>
+<li><strong>祛痘</strong>：如果后背已经长痘，可以点涂水杨酸精华或过氧化苯甲酰凝胶，严重的话看医生。</li>
+<li><strong>保湿</strong>：洗完澡涂清爽型的身体乳，不要用太油腻的，以免堵塞毛孔。</li>
+<li><strong>注意</strong>：洗完澡要把后背擦干，潮湿的环境容易滋生细菌和真菌。穿透气的棉质衣服，不要穿太紧的化纤衣服。</li>
+</ul>
+<h3>3. 手臂和腿部护理</h3>
+<p>手臂和腿部是身体面积最大的部位，也是最容易干燥的部位。很多人腿上有"鸡皮肤"（毛周角化症），手臂外侧也有小疙瘩，穿短袖短裙时很影响美观。</p>
+<p><strong>护理方法</strong>：</p>
+<ul>
+<li><strong>去角质</strong>：每周1-2次身体磨砂，重点按摩鸡皮肤部位。选择含果酸或水杨酸的磨砂膏，效果更好。</li>
+<li><strong>保湿</strong>：这是改善鸡皮肤的关键！每天涂身体乳，选择含尿素、神经酰胺、果酸的身体乳，能软化角质、滋润皮肤。坚持1-2个月，鸡皮肤会明显改善。</li>
+<li><strong>不要挤</strong>：鸡皮肤的小疙瘩不要用手挤，会导致发炎和色素沉着。</li>
+<li><strong>防晒</strong>：手臂和腿部暴露在阳光下的时间多，要注意防晒，否则会晒黑、晒伤、长斑。</li>
+</ul>
+<h3>4. 手部护理</h3>
+<p>"手是女人的第二张脸"，手部皮肤经常暴露在外，又经常接触洗涤剂、消毒剂，容易干燥粗糙。</p>
+<p><strong>护理方法</strong>：</p>
+<ul>
+<li><strong>温和清洁</strong>：用温和的洗手液，不要用肥皂（碱性太强）。洗碗、洗衣服时戴橡胶手套，避免洗涤剂直接接触皮肤。</li>
+<li><strong>随时涂护手霜</strong>：包里、办公室、家里各放一支护手霜，洗完手就涂。选择含甘油、尿素、神经酰胺、植物油的护手霜。</li>
+<li><strong>定期手膜</strong>：每周1-2次手膜，或者厚涂护手霜后戴上棉手套，20分钟后洗掉，手部皮肤会变得嫩滑。</li>
+<li><strong>指甲护理</strong>：定期修剪指甲，不要剪太短。涂护手霜时顺便按摩指甲周围的皮肤（甲缘），预防倒刺。不要频繁做美甲，让指甲休息。</li>
+<li><strong>防晒</strong>：手部也需要防晒，尤其是开车的时候，左手容易晒黑。</li>
+</ul>
+<h3>5. 脚部护理</h3>
+<p>脚是最容易被忽略的部位，但也是最辛苦的部位。每天走路、穿鞋，脚部皮肤容易粗糙、起茧、干裂。</p>
+<p><strong>护理方法</strong>：</p>
+<ul>
+<li><strong>清洁</strong>：每天洗脚，重点清洁脚趾缝，洗完后擦干，预防脚气。</li>
+<li><strong>去角质</strong>：每周1次脚部去角质，用磨脚石或足部磨砂膏，重点按摩脚后跟和脚掌，去除老茧和死皮。</li>
+<li><strong>保湿</strong>：每天涂护足霜或身体乳，重点涂抹脚后跟。如果脚后跟干裂严重，可以厚涂护足霜后穿上棉袜睡觉，第二天脚后跟会变得嫩滑。</li>
+<li><strong>指甲护理</strong>：定期修剪脚趾甲，不要剪太短或太圆，预防甲沟炎。</li>
+<li><strong>选对鞋</strong>：穿合脚、透气的鞋子，不要长期穿高跟鞋或太紧的鞋。每天换鞋，让鞋子透气。袜子每天换，穿棉质透气的袜子。</li>
+</ul>
+<h2>身体护理产品推荐</h2>
+<h3>沐浴露</h3>
+<ul>
+<li><strong>干皮/敏感肌</strong>：选择氨基酸表活、无香精、滋润型的沐浴露。</li>
+<li><strong>油皮/痘肌</strong>：选择含水杨酸或果酸的沐浴露，帮助控油祛痘。</li>
+<li><strong>普通肤质</strong>：选择温和的沐浴露，根据季节调整，夏天用清爽型，冬天用滋润型。</li>
+</ul>
+<h3>身体磨砂膏</h3>
+<p>选择颗粒细腻的磨砂膏，不要用颗粒太粗的，会损伤皮肤。含果酸或水杨酸的磨砂膏效果更好。每周1-2次，不要太频繁，否则会过度去角质，导致皮肤敏感。</p>
+<h3>身体乳</h3>
+<ul>
+<li><strong>干皮</strong>：选择含尿素、神经酰胺、植物油的滋润型身体乳，质地可以厚重一点。</li>
+<li><strong>油皮</strong>：选择清爽型、不油腻的身体乳，凝露或乳液质地。</li>
+<li><strong>鸡皮肤</strong>：选择含果酸、水杨酸、尿素的身体乳，坚持使用能改善。</li>
+<li><strong>敏感肌</strong>：选择无香精、无色素、成分简单的身体乳。</li>
+</ul>
+<h2>身体护理的常见误区</h2>
+<blockquote>误区一：洗澡水越热越好。<br>正解：水温太高会破坏皮肤的皮脂膜，导致皮肤更干燥。最佳水温是38-40℃，比体温略高一点。</blockquote>
+<blockquote>误区二：洗澡时间越长越干净。<br>正解：洗澡时间太长会让皮肤水分流失，导致干燥。最佳时间是10-15分钟。</blockquote>
+<blockquote>误区三：身体乳只有冬天才需要涂。<br>正解：一年四季都需要涂身体乳，夏天可以用清爽型的，空调房里皮肤也会干燥。</blockquote>
+<blockquote>误区四：去角质越频繁越好。<br>正解：过度去角质会损伤皮肤屏障，导致皮肤敏感、干燥。每周1-2次足够，敏感肌每周1次或更少。</blockquote>
+<blockquote>误区五：身体皮肤不需要防晒。<br>正解：身体皮肤也会被晒黑、晒伤、长斑，尤其是夏天穿短袖短裙的时候。暴露在外的部位都要涂防晒霜，或者穿防晒衣。</blockquote>
+<h2>养成身体护理的好习惯</h2>
+<p>身体护理不需要很复杂，关键是坚持。把身体护理融入日常习惯：</p>
+<ul>
+<li>洗完澡3分钟内涂身体乳，这是黄金时间。</li>
+<li>每周固定1-2天做身体去角质。</li>
+<li>包里常备护手霜，洗完手就涂。</li>
+<li>晚上睡觉前涂护足霜，穿上棉袜。</li>
+<li>夏天出门前，暴露在外的身体部位涂防晒霜。</li>
+</ul>
+<p>精致不是天生的，是后天养成的。从今天开始，好好护理你的身体，做一个从头到脚都精致的女人！</p>`
+},
+{
+  id:12, title:"入门香水推荐：找到属于你的专属气息", category:"美体香氛", tags:["香水","香调","入门推荐"],
+  cover:"assets/hero-ingredients.jpg", date:"2026-08-22", author:"苏妲己", views:16780,
+  summary:"香水是女人的隐形名片，但刚入门的你是不是面对各种香调一脸懵？这篇香水入门指南，从香调分类到选购技巧，帮你找到属于自己的那支香。",
+  content:`<p>玛丽莲·梦露说过："我睡觉时只穿香奈儿5号。"香水，是女人最私密的表达，也是最无形的名片。一个人的气味，往往比她的长相更让人记忆深刻。但刚入门香水的你，是不是面对各种香调名词一脸懵？什么前调中调后调？什么木质调花香调？今天就来一篇超详细的香水入门指南。</p>
+<h2>香水的基础知识</h2>
+<h3>香水的浓度分类</h3>
+<p>香水根据香精浓度的不同，分为以下几类，浓度越高，留香时间越长，价格也越贵：</p>
+<ul>
+<li><strong>Parfum（香精/浓香水）</strong>：香精浓度15-30%，留香6-8小时，价格最贵，适合正式场合。</li>
+<li><strong>Eau de Parfum（EDP，淡香精）</strong>：香精浓度10-15%，留香4-6小时，最常见的类型，日常和正式场合都适合。</li>
+<li><strong>Eau de Toilette（EDT，淡香水）</strong>：香精浓度5-10%，留香2-4小时，清新自然，适合日常和夏天。</li>
+<li><strong>Eau de Cologne（EDC，古龙水）</strong>：香精浓度2-5%，留香1-2小时，非常清新，适合运动后或夏天。</li>
+<li><strong>Eau Fraiche（清香水）</strong>：香精浓度1-3%，留香最短，最清新。</li>
+</ul>
+<p>入门推荐从EDP或EDT开始，性价比高，适用场景广。</p>
+<h3>香水的三调结构</h3>
+<p>香水不是单一的味道，而是有层次的，通常分为前调、中调、后调三个阶段：</p>
+<ul>
+<li><strong>前调（Top Notes）</strong>：喷上后最先闻到的味道，持续0-15分钟。通常是清新的柑橘、草本等挥发性高的成分，给人第一印象。</li>
+<li><strong>中调（Heart Notes）</strong>：前调消散后出现，持续15分钟到2小时。是香水的核心灵魂，通常是花香、果香等，体现香水的主题。</li>
+<li><strong>后调（Base Notes）</strong>：最后出现，持续2-6小时甚至更久。通常是木质、麝香、琥珀等挥发性低的成分，给人余韵和深度。</li>
+</ul>
+<p><strong>重要提醒</strong>：试香水时不要只闻前调就决定买不买，一定要等15-30分钟，闻中调和后调，因为那才是香水真正的味道，也是留在你身上最久的味道。</p>
+<h2>常见香调分类</h2>
+<p>香水的香调有很多种，以下是最常见的几大类：</p>
+<h3>1. 花香调（Floral）</h3>
+<p>最经典、最受欢迎的香调，以各种花卉为主要成分。</p>
+<ul>
+<li><strong>单一花香</strong>：以一种花为主，如玫瑰、茉莉、栀子、牡丹。</li>
+<li><strong>复合花香</strong>：多种花混合，如花束、百花。</li>
+</ul>
+<p><strong>特点</strong>：温柔、女性化、浪漫，适合大多数女性，入门首选。<strong>适合场景</strong>：日常、约会、春季。</p>
+<h3>2. 木质调（Woody）</h3>
+<p>以木材类成分为主，如檀香、雪松、广藿香、沉香。</p>
+<p><strong>特点</strong>：温暖、沉稳、有质感，中性偏成熟，男女都能用。<strong>适合场景</strong>：秋冬、职场、正式场合。</p>
+<h3>3. 柑橘调（Citrus）</h3>
+<p>以柑橘类水果为主，如柠檬、橙子、柚子、佛手柑。</p>
+<p><strong>特点</strong>：清新、干净、活力，留香较短。<strong>适合场景</strong>：夏天、运动、日常通勤。</p>
+<h3>4. 果香调（Fruity）</h3>
+<p>以各种水果为主，如桃子、苹果、梨、浆果、椰子。</p>
+<p><strong>特点</strong>：甜美、年轻、活泼，适合少女感。<strong>适合场景</strong>：日常、约会、春夏。</p>
+<h3>5. 东方调（Oriental）</h3>
+<p>以香料、树脂、香草为主，如香草、琥珀、麝香、肉桂、没药。</p>
+<p><strong>特点</strong>：浓郁、神秘、性感，留香长，偏成熟。<strong>适合场景</strong>：秋冬、晚上、派对、约会。</p>
+<h3>6. 绿叶调（Green）</h3>
+<p>以青草、树叶、草本为主，如薄荷、茶叶、青草、无花果叶。</p>
+<p><strong>特点</strong>：清新、自然、文艺，像走进森林。<strong>适合场景</strong>：春夏、日常、文艺风格。</p>
+<h3>7. 水生调（Aquatic）</h3>
+<p>模拟水的气息，如海水、雨水、矿物质感。</p>
+<p><strong>特点</strong>：清凉、干净、现代，中性香。<strong>适合场景</strong>：夏天、运动、职场。</p>
+<h3>8. 馥奇调（Fougère）</h3>
+<p>以薰衣草、苔藓、木质为主，原本是男香的经典香调，现在也有很多女香使用。</p>
+<p><strong>特点</strong>：干净、利落、中性，像刚理完发的味道。<strong>适合场景</strong>：职场、日常、中性风格。</p>
+<h2>入门香水推荐（按香调分类）</h2>
+<h3>花香调入门</h3>
+<ul>
+<li><strong>祖玛珑 蓝风铃</strong>：清新的蓝风铃+柿子+白麝香，干净温柔，像夏天的风，新手友好。</li>
+<li><strong>迪奥 花漾甜心</strong>：牡丹+玫瑰+麝香，甜美温柔，少女感十足，约会首选。</li>
+<li><strong>香奈儿 邂逅柔情（粉邂逅）</strong>：葡萄柚+茉莉+麝香，温柔有活力，日常百搭。</li>
+<li><strong>古驰 花悦</strong>：茉莉+晚香玉+使君子，浓郁白花，复古浪漫，适合喜欢浓花香的人。</li>
+</ul>
+<h3>木质调入门</h3>
+<ul>
+<li><strong>祖玛珑 英国梨与小苍兰</strong>：梨+小苍兰+广藿香+琥珀，清新花果+木质尾调，百搭不踩雷。</li>
+<li><strong>Le Labo 檀香33</strong>：檀香+雪松+皮革+麝香，温暖有质感，中性香，秋冬必备。</li>
+<li><strong>汤姆福特 乌木沉香</strong>：沉香+檀香+香草+琥珀，浓郁高级，适合成熟女性，正式场合。</li>
+<li><strong>BYREDO 超级雪松</strong>：雪松+玫瑰+麝香，干净清冷，中性香，文艺青年最爱。</li>
+</ul>
+<h3>柑橘调入门</h3>
+<ul>
+<li><strong>祖玛珑 橙花</strong>：橙花+柑橘+白麝香，干净清新，像刚剥开的橙子，夏天必备。</li>
+<li><strong>爱马仕 橘彩星光</strong>：橙子+琥珀+木质，温暖的柑橘调，不是单纯的清新，有深度。</li>
+<li><strong>帕尔马之水 桃金娘加州桂</strong>：柠檬+桃金娘+雪松，地中海风情，清新干净，男女都能用。</li>
+</ul>
+<h3>果香调入门</h3>
+<ul>
+<li><strong>祖玛珑 英国梨与小苍兰</strong>（前面提过，花果香经典）</li>
+<li><strong>纳西索 为她（粉瓶）</strong>：桃子+玫瑰+麝香，温柔甜美，伪体香的代表。</li>
+<li><strong>YSL 黑鸦片</strong>：咖啡+香草+白花，甜酷女孩必备，浓郁但不腻。</li>
+</ul>
+<h3>东方调入门</h3>
+<ul>
+<li><strong>香奈儿 可可小姐</strong>：玫瑰+茉莉+广藿香+香草，经典东方花香，成熟女性必备。</li>
+<li><strong>YSL 自由之水</strong>：橙花+薰衣草+香草+麝香，飒爽女性的代表，可盐可甜。</li>
+<li><strong>汤姆福特 失落樱桃</strong>：樱桃+杏仁+香草，甜美性感，约会神器。</li>
+</ul>
+<h2>如何选购适合自己的香水？</h2>
+<h3>1. 明确自己的喜好</h3>
+<p>先想想你喜欢什么味道：喜欢清新的还是浓郁的？喜欢甜的还是冷的？喜欢花香还是木质？可以从自己喜欢的食物、植物、环境气味入手。</p>
+<h3>2. 考虑使用场景</h3>
+<ul>
+<li><strong>日常通勤</strong>：选择清新、低调的香水，如柑橘调、绿叶调、淡花香，不要太浓，以免影响同事。</li>
+<li><strong>约会</strong>：选择温柔、有女人味的香水，如花香调、果香调、东方调，增加吸引力。</li>
+<li><strong>正式场合</strong>：选择浓郁、有质感的香水，如东方调、木质调，体现品味和气场。</li>
+<li><strong>运动/夏天</strong>：选择清新、留香短的香水，如柑橘调、水生调，清爽不黏腻。</li>
+</ul>
+<h3>3. 试香的正确方法</h3>
+<ul>
+<li><strong>不要在专柜闻太多</strong>：一次最多试3-4支，闻多了嗅觉会疲劳，分不出区别。</li>
+<li><strong>先喷在试香纸上</strong>：闻前调，喜欢的话再喷在手腕上。</li>
+<li><strong>等15-30分钟</strong>：让香水和皮肤融合，闻中调和后调，这才是香水真正的味道。</li>
+<li><strong>不要搓手腕</strong>：搓手腕会破坏香水的分子结构，影响味道。</li>
+<li><strong>考虑体温</strong>：香水在不同体温的人身上味道会有差异，一定要在自己皮肤上试。</li>
+<li><strong>买小样先试</strong>：不确定的话先买小样或分装，用几天再决定买不买正装。</li>
+</ul>
+<h3>4. 香水和性格的搭配</h3>
+<ul>
+<li><strong>温柔甜美型</strong>：花香调、果香调，如迪奥花漾甜心、祖玛珑蓝风铃。</li>
+<li><strong>知性优雅型</strong>：木质调、东方调，如香奈儿可可小姐、Le Labo檀香33。</li>
+<li><strong>清新文艺型</strong>：绿叶调、柑橘调，如祖玛珑橙花、BYREDO超级雪松。</li>
+<li><strong>酷飒个性型</strong>：馥奇调、木质调、东方调，如YSL自由之水、汤姆福特乌木沉香。</li>
+<li><strong>甜美性感型</strong>：东方调、果香调，如YSL黑鸦片、汤姆福特失落樱桃。</li>
+</ul>
+<h2>香水的正确使用方法</h2>
+<ul>
+<li><strong>喷在脉搏处</strong>：手腕、耳后、颈部、手肘内侧、膝盖后侧，这些部位体温高，能更好地散发香气。</li>
+<li><strong>喷在衣服上</strong>：可以喷在衣角、围巾、头发上，留香更久，但要注意不要弄脏浅色衣服。</li>
+<li><strong>不要喷太多</strong>：日常2-3下足够，正式场合3-4下，太多会让人觉得刺鼻。</li>
+<li><strong>不要搓手腕</strong>：前面说过，搓手腕会破坏香水分子。</li>
+<li><strong>补香技巧</strong>：如果留香短，可以带小样或旅行装，中午补喷1-2下。</li>
+<li><strong>香水保存</strong>：放在阴凉干燥处，避免阳光直射和高温，不要放在浴室（潮湿）。开封后尽量在2-3年内用完。</li>
+</ul>
+<h2>入门常见问题解答</h2>
+<blockquote>Q：香水留香短怎么办？<br>A：可以选择EDP浓度的香水，或者喷在衣服上，或者用同系列的身体乳叠加（香氛身体乳+香水，留香更久）。也可以在喷香水前涂一层无香身体乳，增加皮肤的滋润度，留香更久。</blockquote>
+<blockquote>Q：香水和体香冲突怎么办？<br>A：每个人的体香不同，香水在不同人身上味道会有差异。一定要在自己皮肤上试香，不要只闻试香纸。如果和体香冲突，可以换一支，或者用在衣服上。</blockquote>
+<blockquote>Q：学生党预算有限，买什么香水？<br>A：可以买30ml的小瓶装，或者买小样/分装先试。也有很多性价比高的平价香水，如4711、气味图书馆、名创优品的部分香水等。等预算充足了再买大牌。</blockquote>
+<blockquote>Q：可以同时喷多支香水吗？<br>A：可以，这叫"叠香"，但需要技巧。建议选择同一品牌或同一香调家族的香水叠加，不容易出错。新手不建议随意叠香，可能会变成灾难。</blockquote>
+<blockquote>Q：香水会过期吗？<br>A：香水没有严格的保质期，但开封后会逐渐氧化，味道会变化。一般建议2-3年内用完。如果发现香水颜色变深、味道变酸、出现沉淀，就不要用了。</blockquote>
+<p>香水是一种很私人的东西，没有绝对的好坏，只有适不适合。不要盲目跟风买热门香，也不要因为别人说好看就买。多试多闻，找到那支让你一闻就心动、喷上就自信的香水，它就是属于你的专属气息。</p>
+<p>愿每个女人都能找到属于自己的那支香，让美好的气味陪伴你度过每一天。</p>`
+}
+];
+
+/* ===== 工具函数 ===== */
+const $ = s => document.querySelector(s);
+const app = $('#app');
+const CATEGORIES = ['全部','护肤','彩妆','发型护发','美体香氛'];
+const ALL_TAGS = [...new Set(ARTICLES.flatMap(a=>a.tags))];
+
+function formatDate(d){ return d; }
+function getArticleById(id){ return ARTICLES.find(a=>a.id===parseInt(id)); }
+function getRelated(article,n=3){
+  return ARTICLES.filter(a=>a.id!==article.id && (a.category===article.category || a.tags.some(t=>article.tags.includes(t)))).slice(0,n);
+}
+function setNavActive(key){
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.nav===key);
+  });
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+/* ===== 首页渲染 ===== */
+function renderHome(){
+  setNavActive('home');
+  const featured = ARTICLES.slice(0,3);
+  const hotList = [...ARTICLES].sort((a,b)=>b.views-a.views).slice(0,8);
+  const latest = ARTICLES.slice(0,8);
+
+  app.innerHTML = `
+  <!-- Hero 轮播 -->
+  <section class="hero" id="hero">
+    ${featured.map((a,i)=>`
+      <div class="hero-slide ${i===0?'active':''}" data-article="${a.id}">
+        <img src="${a.cover}" alt="${a.title}">
+        <div class="hero-content">
+          <span class="hero-tag">${a.category} · 精选推荐</span>
+          <h2 class="hero-title">${a.title}</h2>
+          <p class="hero-desc">${a.summary}</p>
+          <a href="#/article/${a.id}" class="hero-btn">阅读全文 →</a>
+        </div>
+      </div>
+    `).join('')}
+    <div class="hero-dots">
+      ${featured.map((_,i)=>`<button class="${i===0?'active':''}" data-slide="${i}"></button>`).join('')}
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- 分类标签 -->
+    <div class="cat-bar">
+      <ul class="cat-list" id="catList">
+        ${CATEGORIES.map(c=>`<li><button class="${c==='全部'?'active':''}" data-cat="${c}">${c}</button></li>`).join('')}
+      </ul>
+    </div>
+
+    <div class="main">
+      <div class="content-col">
+        <!-- 热门精选 -->
+        <h2 class="section-title">热门精选</h2>
+        <div class="featured">
+          <div class="featured-main" data-article="${featured[0].id}">
+            <img src="${featured[0].cover}" alt="${featured[0].title}">
+            <div class="overlay">
+              <span class="cat-badge">${featured[0].category}</span>
+              <h3>${featured[0].title}</h3>
+              <p>${featured[0].summary}</p>
+            </div>
+          </div>
+          <div class="featured-side">
+            ${featured.slice(1,3).map(a=>`
+              <div class="featured-item" data-article="${a.id}">
+                <img src="${a.cover}" alt="${a.title}">
+                <div class="featured-item-info">
+                  <h4>${a.title}</h4>
+                  <div class="featured-item-meta"><span>${a.author}</span><span>${a.date}</span></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <!-- 最新文章 -->
+        <h2 class="section-title">最新文章</h2>
+        <div class="article-grid" id="articleGrid">
+          ${latest.map(a=>renderCard(a)).join('')}
+        </div>
+      </div>
+
+      <!-- 侧边栏 -->
+      <aside class="sidebar">
+        <div class="widget about-widget">
+          <div class="logo">少妇.cn</div>
+          <p>专注美妆资讯与实用指南，让每一位女性发现更美的自己。</p>
+          <div class="about-stats">
+            <div><div class="num">${ARTICLES.length}</div><div class="label">篇文章</div></div>
+            <div><div class="num">${ALL_TAGS.length}</div><div class="label">个标签</div></div>
+            <div><div class="num">4</div><div class="label">大分类</div></div>
+          </div>
+        </div>
+
+        <div class="widget">
+          <h3 class="widget-title">热门排行</h3>
+          <ul class="hot-list">
+            ${hotList.map(a=>`
+              <li data-article="${a.id}">
+                <div>
+                  <h4>${a.title}</h4>
+                  <div class="views">${a.views.toLocaleString()} 阅读 · ${a.category}</div>
+                </div>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="widget">
+          <h3 class="widget-title">热门标签</h3>
+          <div class="tag-cloud">
+            ${ALL_TAGS.map(t=>`<a href="#/tag/${encodeURIComponent(t)}">${t}</a>`).join('')}
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+
+  // 绑定事件
+  bindArticleClicks();
+  initHeroSlider();
+  document.querySelectorAll('#catList button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const cat = btn.dataset.cat;
+      document.querySelectorAll('#catList button').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      const grid = $('#articleGrid');
+      if(cat==='全部'){
+        grid.innerHTML = ARTICLES.slice(0,8).map(a=>renderCard(a)).join('');
+      }else{
+        const filtered = ARTICLES.filter(a=>a.category===cat);
+        grid.innerHTML = filtered.length ? filtered.map(a=>renderCard(a)).join('') : '<div class="empty-state" style="grid-column:1/-1"><h3>该分类暂无文章</h3></div>';
+      }
+      bindArticleClicks();
+    });
+  });
+}
+
+function renderCard(a){
+  return `
+  <div class="article-card" data-article="${a.id}">
+    <div class="article-card-img"><img src="${a.cover}" alt="${a.title}" loading="lazy"></div>
+    <div class="article-card-body">
+      <span class="article-card-cat">${a.category}</span>
+      <h3>${a.title}</h3>
+      <p>${a.summary}</p>
+      <div class="article-card-meta">
+        <span class="author"><span class="avatar">${a.author[0]}</span>${a.author}</span>
+        <span>${a.date} · ${a.views.toLocaleString()}阅读</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function bindArticleClicks(){
+  document.querySelectorAll('[data-article]').forEach(el=>{
+    el.addEventListener('click',()=>{
+      location.hash = `#/article/${el.dataset.article}`;
+    });
+    el.style.cursor = 'pointer';
+  });
+}
+
+/* ===== Hero 轮播 ===== */
+let heroTimer = null;
+function initHeroSlider(){
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.hero-dots button');
+  let current = 0;
+  if(slides.length<=1) return;
+
+  function goTo(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+  dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
+  heroTimer = setInterval(()=>goTo((current+1)%slides.length),5000);
+}
+
+/* ===== 文章详情页 ===== */
+function renderArticle(id){
+  const article = getArticleById(id);
+  if(!article){ renderNotFound(); return; }
+  setNavActive(article.category);
+  const related = getRelated(article,3);
+
+  app.innerHTML = `
+  <div class="container" style="padding-top:28px">
+    <div class="main" style="grid-template-columns:1fr 300px">
+      <article class="article-detail">
+        <a href="#/" class="back-btn">← 返回首页</a>
+        <h1>${article.title}</h1>
+        <div class="article-meta">
+          <span class="author-info"><span class="avatar">${article.author[0]}</span>${article.author}</span>
+          <span>${article.date}</span>
+          <span>${article.category}</span>
+          <span>${article.views.toLocaleString()} 阅读</span>
+        </div>
+        <img class="article-cover" src="${article.cover}" alt="${article.title}">
+        <div class="article-body">${article.content}</div>
+        <div class="article-tags">
+          ${article.tags.map(t=>`<a href="#/tag/${encodeURIComponent(t)}"># ${t}</a>`).join('')}
+        </div>
+      </article>
+
+      <aside class="sidebar">
+        <div class="widget">
+          <h3 class="widget-title">相关推荐</h3>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            ${related.map(a=>`
+              <div class="featured-item" data-article="${a.id}" style="flex-direction:column">
+                <img src="${a.cover}" alt="${a.title}" style="width:100%;height:120px">
+                <div class="featured-item-info" style="margin-top:10px">
+                  <h4>${a.title}</h4>
+                  <div class="featured-item-meta" style="margin-top:6px"><span>${a.category}</span><span>${a.date}</span></div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+        <div class="widget">
+          <h3 class="widget-title">热门排行</h3>
+          <ul class="hot-list">
+            ${[...ARTICLES].sort((a,b)=>b.views-a.views).slice(0,5).map(a=>`
+              <li data-article="${a.id}"><div><h4>${a.title}</h4><div class="views">${a.views.toLocaleString()} 阅读</div></div></li>
+            `).join('')}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+  bindArticleClicks();
+  window.scrollTo(0,0);
+}
+
+/* ===== 分类页 ===== */
+function renderCategory(cat){
+  setNavActive(cat);
+  const articles = ARTICLES.filter(a=>a.category===cat);
+  app.innerHTML = `
+  <div class="container">
+    <div class="cat-header">
+      <h1>${cat}</h1>
+      <p>共 ${articles.length} 篇文章</p>
+    </div>
+    <div class="article-grid" style="padding-bottom:60px">
+      ${articles.length ? articles.map(a=>renderCard(a)).join('') : '<div class="empty-state" style="grid-column:1/-1"><h3>该分类暂无文章</h3></div>'}
+    </div>
+  </div>`;
+  bindArticleClicks();
+}
+
+/* ===== 标签页 ===== */
+function renderTag(tag){
+  setNavActive('home');
+  const articles = ARTICLES.filter(a=>a.tags.includes(tag));
+  app.innerHTML = `
+  <div class="container">
+    <div class="cat-header">
+      <h1># ${tag}</h1>
+      <p>共 ${articles.length} 篇相关文章</p>
+    </div>
+    <div class="article-grid" style="padding-bottom:60px">
+      ${articles.length ? articles.map(a=>renderCard(a)).join('') : '<div class="empty-state" style="grid-column:1/-1"><h3>暂无相关文章</h3></div>'}
+    </div>
+  </div>`;
+  bindArticleClicks();
+}
+
+/* ===== 搜索结果页 ===== */
+function renderSearch(keyword){
+  setNavActive('home');
+  const kw = keyword.toLowerCase();
+  const articles = ARTICLES.filter(a=>
+    a.title.toLowerCase().includes(kw) ||
+    a.summary.toLowerCase().includes(kw) ||
+    a.tags.some(t=>t.toLowerCase().includes(kw)) ||
+    a.category.toLowerCase().includes(kw)
+  );
+  app.innerHTML = `
+  <div class="container">
+    <div class="cat-header">
+      <h1>搜索：${keyword}</h1>
+      <p>找到 ${articles.length} 篇相关文章</p>
+    </div>
+    <div class="article-grid" style="padding-bottom:60px">
+      ${articles.length ? articles.map(a=>renderCard(a)).join('') : '<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg><h3>没有找到相关文章</h3><p>换个关键词试试吧</p></div>'}
+    </div>
+  </div>`;
+  bindArticleClicks();
+}
+
+function doSearch(){
+  const kw = $('#searchInput').value.trim();
+  if(kw) location.hash = `#/search/${encodeURIComponent(kw)}`;
+}
+
+/* ===== 关于页 ===== */
+function renderAbout(){
+  setNavActive('about');
+  app.innerHTML = `
+  <div class="container" style="padding-top:40px;padding-bottom:60px">
+    <div class="article-detail" style="max-width:800px;margin:0 auto">
+      <h1 style="text-align:center;margin-bottom:8px">关于少妇.cn</h1>
+      <p style="text-align:center;color:var(--ink-soft);margin-bottom:32px">让美成为一种生活态度</p>
+      <div class="article-body">
+        <h2>我们是谁</h2>
+        <p>少妇.cn 是一个专注于美妆资讯的内容平台，致力于为每一位女性提供专业、实用、有温度的美妆护肤指南。我们相信，美不是天生的，而是一种可以学习和培养的生活态度。</p>
+        <h2>我们做什么</h2>
+        <p>我们的内容覆盖四大领域：</p>
+        <ul>
+          <li><strong>护肤</strong>：从基础清洁到抗老精华，科学护肤，理性种草。</li>
+          <li><strong>彩妆</strong>：从新手入门到高阶教程，手把手教你画出好看的妆容。</li>
+          <li><strong>发型护发</strong>：流行发型趋势、护发心得，帮你找到最适合的发型。</li>
+          <li><strong>美体香氛</strong>：身体护理、香水推荐，做个从头到脚都精致的女人。</li>
+        </ul>
+        <h2>我们的理念</h2>
+        <p>我们不鼓吹"颜值焦虑"，也不盲目种草。我们希望传递的是一种<strong>理性、健康、积极</strong>的美妆态度——护肤是为了皮肤健康，化妆是为了让自己开心，变美是为了成为更好的自己。</p>
+        <p>每一篇文章都经过认真撰写，每一个推荐都基于真实体验。我们希望成为你美妆路上最靠谱的伙伴。</p>
+        <h2>联系我们</h2>
+        <p>如果你有任何问题、建议或合作意向，欢迎通过以下方式联系我们：</p>
+        <ul>
+          <li>投稿合作：请在网站留言或发送邮件</li>
+          <li>内容反馈：欢迎在评论区留言</li>
+          <li>商务合作：请注明来意</li>
+        </ul>
+        <blockquote>感谢你关注少妇.cn，愿我们都能在变美的路上，成为更好的自己。</blockquote>
+      </div>
+    </div>
+  </div>`;
+}
+
+/* ===== 404 ===== */
+function renderNotFound(){
+  app.innerHTML = `
+  <div class="container">
+    <div class="empty-state" style="padding:120px 20px">
+      <h1 style="font-family:'Noto Serif SC',serif;font-size:64px;color:var(--rose);margin-bottom:16px">404</h1>
+      <h3>页面走丢了</h3>
+      <p style="margin-bottom:24px">你访问的页面不存在或已被移除</p>
+      <a href="#/" class="hero-btn" style="display:inline-block">返回首页</a>
+    </div>
+  </div>`;
+}
+
+/* ===== 路由 ===== */
+function router(){
+  if(heroTimer){ clearInterval(heroTimer); heroTimer=null; }
+  const hash = location.hash.slice(1) || '/';
+  const parts = hash.split('/').filter(Boolean);
+
+  if(parts.length===0 || parts[0]===''){
+    renderHome();
+  }else if(parts[0]==='article' && parts[1]){
+    renderArticle(parts[1]);
+  }else if(parts[0]==='category' && parts[1]){
+    renderCategory(decodeURIComponent(parts[1]));
+  }else if(parts[0]==='tag' && parts[1]){
+    renderTag(decodeURIComponent(parts[1]));
+  }else if(parts[0]==='search' && parts[1]){
+    renderSearch(decodeURIComponent(parts[1]));
+  }else if(parts[0]==='about'){
+    renderAbout();
+  }else{
+    renderNotFound();
+  }
+}
+
+window.addEventListener('hashchange',router);
+window.addEventListener('DOMContentLoaded',router);
+if(document.readyState!=='loading') router();
+</script>
+</body>
+</html>
